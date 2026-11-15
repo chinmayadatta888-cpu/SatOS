@@ -26,6 +26,8 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 **Final content replacement — Note For You and Satwiscape: complete.**
 
+**Final asset and content update — complete.**
+
 ## Completed features
 
 - React, TypeScript, and Vite project foundation with modular components.
@@ -40,7 +42,7 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Taskbar buttons for open apps with focus switching and minimize/restore toggles. Opening an app again restores and focuses its existing window.
 - Keyboard interactions for Enter (open one selected shortcut), Escape (clear desktop selection), Alt+F4 (close the active window), and Delete (open Recycle Bin).
 - Custom SVG pixel cursors for the desktop pointer, links/buttons, text, moving windows, and all resize directions.
-- Photos app with a scrollable 12-entry album, central editable metadata, adjustable pixelated thumbnails, an original-quality viewer, previous/next controls, keyboard navigation, and custom loading/error states.
+- Photos app with exactly eight unique supplied PNGs, title-only gallery entries, adjustable pixelated thumbnails, an original-quality viewer, previous/next controls, keyboard navigation, and custom loading/error states.
 - Note For You with an animated sealed envelope, a configurable read-only letter, and a notepad-style view.
 - Achievements with 10 configurable entries, custom pixel badge artwork, a derived unlocked count, scrolling, and a detail panel.
 - Recycle Bin with fictional keepsakes, rotating non-destructive empty-bin notices, and icon-drop protection that restores desktop shortcuts and shows a toast.
@@ -54,16 +56,16 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - The room uses layered pixel-style SVG scenery, string lights, a window and shelves, a desk lantern, a floor rug, a central table, and the supplied Junny artwork. The cake sits at the tabletop line beside Junny; the dialogue occupies a separate responsive row below the room.
 - The single supplied Junny portrait is reused unchanged. Story expressions use distinct pixel marks, a thought bubble, small pose and colour shifts, and celebration effects rather than fabricated photos or manual controls.
 - The story includes the birthday greeting, rescue-game memory, cake reveal, lighting, three wish lines and confirmation, blowing out candles, celebration, cutting and serving a slice, hidden message, gift and personal letter, a clear ending, and replay.
-- Junny HQ navigation is limited to Home, Scrapbook, and Profile. The scrapbook keeps its polaroid gallery and photo viewer; Profile retains the official mascot details.
-- Birthday dialogue is in `src/config/junny/birthdayDialogue.ts`; gift and hidden-message copy is in `birthdayGift.ts`; profile, notices, and photo metadata remain in their dedicated config files.
+- Junny HQ navigation is limited to Home and Profile; Profile retains the official mascot details.
+- Birthday dialogue is in `src/config/junny/birthdayDialogue.ts`; gift and hidden-message copy is in `birthdayGift.ts`; profile and notices remain in their dedicated config files.
 - The supplied image remains unchanged at `public/assets/junny/junny_pixell_1.png`; one source image is used without inventing extra photos. Room lighting continues to use `useLocalTime.ts`.
 - Settings Control Panel with Appearance, Display, Sounds, Personalization, Junny Management, Diagnostics, Experimental Features, and About categories.
 - Persistent real settings for automatic/day/night wallpaper, desktop shortcut visibility, pixel cursor, UI/reduced motion, system sound effects and volume, and 12/24-hour taskbar clock. Start Menu access remains available when desktop icons are hidden.
 - Junny Management with saved CEO authority, virtual hugs, nap and Recycle Bin protection preferences, cuteness calibration, and the Employee of the Month panel. Recycle Bin protection stays fictional and non-destructive.
 - Short local diagnostics and update sequences, version-click developer easter egg, optional humorous notices, and seriousness calibration. Potato Mode, Main Character Mode, and cuteness values are playful preferences; Dramatic Startup is clearly marked as a saved preference with no startup effect in this edition.
-- A confirmed Settings-only reset that leaves photos, messages, scrapbook entries, achievements, and other app content untouched.
+- A confirmed Settings-only reset that leaves photos, messages, achievements, and other app content untouched.
 - Note For You now contains the supplied final letter in `src/config/noteContent.ts`; the envelope interaction, read-only notepad styling, and scrolling letter view are unchanged.
-- Satwiscape now contains exactly four supplied articles across The Daily Satwi, Satwi Science Journal, The Satwi Times, and The Satwika Chronicle. The homepage, article pages, related links, search, and default Favorites use only those articles and publications.
+- Satwiscape now contains exactly five supplied fictional articles across The Daily Satwi, Satwi Science Journal, The Satwi Times, and The Satwika Chronicle. The homepage, article pages, related links, search, and default Favorites use only those articles and publications.
 - Stale saved Satwiscape Favorites that resolve to removed pages are filtered during load; current valid favorites are preserved, new defaults are added when stale entries are removed, and publication titles are refreshed.
 - Bundled Pixelify Sans and Press Start 2P fonts for local, consistent pixel-inspired type.
 - Refined landscape contours with hand-placed grass and flower clusters, textured hill shading, and a smaller cratered moon.
@@ -98,7 +100,7 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Fixed a shared `.birthday-cake` style collision that reduced the room cake to 10 × 10 pixels. The calendar now has its own icon class; the scene cake is positioned and sized within Junny's room, with its base aligned to the tabletop.
 - Verified the full story at 900 × 650, 1200 × 750, and the maximized 1582 × 804 available viewport. Each run reached the final letter, closed it, and replayed; wish labels, lit flames, extinguished candles and smoke, and the served cake slice were checked.
 - At all three sizes, the cake stayed within about half a pixel of the tabletop line; the bear and cake had a visible gap, dialogue remained below the scene, and no horizontal overflow occurred. A missing implicit favicon request was identified and replaced with a local Satwika pixel mark; the refreshed browser reported no failed requests, console errors, or uncaught exceptions.
-- Checked the Home, Scrapbook, and Profile navigation, the single scrapbook photo viewer, and minimize, maximize, restore, taskbar restore, close, and reopen behavior. Minimize preserved the current view; closing and reopening reset it.
+- Checked Junny HQ Home and Profile navigation plus minimize, maximize, restore, taskbar restore, close, and reopen behavior. Minimize preserved the current view; closing and reopening reset it.
 - Junny HQ remains in the existing `AppWindow` and app ID; no other OS application behavior was changed.
 - Built the final Settings stage successfully with `npm run build`.
 - Ran 44 browser interaction checks: Settings launch from desktop and Start Menu; wallpaper, display, sound, personalization, Junny, and experimental controls; diagnostics, local update check and version easter egg; reset keyboard flow and reload persistence. All checks passed, with no uncaught browser exceptions.
@@ -108,6 +110,10 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Opened all four Satwiscape articles through the homepage and direct controlled routes; verified headlines, publication names, authors, bylines, and exact article bodies. The Deepak note retains its line breaks.
 - Searched for Junny, Satwika, Deepak, and Dishen and confirmed relevant new stories appear. Checked the four-item homepage, all related article IDs, and the stale-Favorites migration; old sample stories and publication links are absent.
 - Ran 34 content/browser checks and the production build successfully. The browser console reported no errors; all four article bodies and the complete letter matched the supplied text exactly.
+- Replaced the Photos placeholders with the eight supplied PNGs, copied byte-for-byte. The gallery and viewer show each photograph with its title and no dates, captions, or descriptions.
+- Removed the Junny Scrapbook tab, view, component, metadata, and styles. The Home and Profile views remain in Junny HQ, with the birthday story and mascot art retained.
+- Added Article #5 by Jathin to The Satwika Chronicle with the supplied headline and body text exactly. The article is part of the shared homepage, publication listing, route, related links, and search index; five final articles remain configured.
+- `npm run build` passed after the final asset and content update. The eight image files and their PNG signatures were checked against the supplied assets.
 - Built Stage 2 successfully with `npm run build`.
 - Manually checked marquee and additive selection, group dragging, shortcut double-click and Enter launch, Delete to Recycle Bin, Escape clearing, window drag/resize/maximize/restore/minimize/close, taskbar switching and toggles, and Alt+F4.
 - Confirmed the custom cursor rules resolve to the corresponding SVGs and the browser console has no errors.
@@ -121,7 +127,6 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 ## Pending features
 
-- Additional Junny scrapbook photos if supplied.
 - Supabase project creation, migration execution, owner-user allowlisting, Vercel environment configuration, and live remote-storage verification.
 - Any additional stages requested by the project owner.
 
@@ -138,16 +143,16 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Boot completion and icon positions are scoped to the current browser session using `sessionStorage`.
 - Desktop app labels and associated descriptions live in one app config; custom shortcut artwork is kept alongside the desktop icon component.
 - `useWindowManager` owns shared app-window state; each app has one reusable window that is restored and focused on repeated launch.
-- `src/config/photos.ts` owns gallery order and photo metadata; multiple entries may point to the same source in `public/assets/photos/` without duplicating the image.
+- `src/config/photos.ts` owns the order and short titles for the eight unique original images stored in `public/assets/photos/`.
 - Satwiscape tab histories and scroll positions are kept in the app session; Favorites and the recent-history panel use `satwiscape.bookmarks.v1` and `satwiscape.history.v1` in localStorage.
 - Satwiscape articles, publications, search rules, hidden pages, and initial favourites live in separate files under `src/config/satwiscape/`; article artwork is local SVG in `public/assets/satwiscape/`.
 - Supabase URL and public key are read from `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `src/config/supabase.ts`; there is no service-role key in frontend code.
 - Public Message to CD submissions use `src/services/messageService.ts`; owner authentication and inbox actions use `src/services/adminMessageService.ts`. The demo storage key is `satwika.message-to-cd.demo.v1` and is device-local only.
 - Owner message access is enforced by `supabase/migrations/20261113000000_create_message_inbox.sql`, not by the inbox route or client UI. The `private.message_owners` table contains the owner allowlist and stays inaccessible to browser roles.
 - `vercel.json` rewrites `/admin/messages` to the single-page app entry point. `SUPABASE_SETUP.md` documents the required project configuration before remote delivery is active.
-- Junny's birthday and identity data is split across `src/config/junny/birthdayDialogue.ts`, `birthdayGift.ts`, `profile.ts`, `announcements.ts`, and `photos.ts`; mascot art belongs in `public/assets/junny/`.
+- Junny's birthday and identity data is split across `src/config/junny/birthdayDialogue.ts`, `birthdayGift.ts`, `profile.ts`, and `announcements.ts`; mascot art belongs in `public/assets/junny/`.
 - Junny HQ retains the existing app ID `teddy` so the current shortcut, Start Menu entry, and shared window behavior remain connected; its visible app name is now `Junny HQ`.
-- Junny HQ uses `useLocalTime.ts` for room lighting and the supplied portrait only; it preserves the source PNG bytes and the scrapbook has one entry because only one supplied portrait is available.
+- Junny HQ uses `useLocalTime.ts` for room lighting and the supplied mascot art unchanged across the birthday room and profile.
 - OS preference defaults and validation live in `src/config/settings.ts`; `src/context/SettingsContext.tsx` loads, persists, resets, and synchronizes the single `satwika.os-settings.v1` localStorage record. Settings are loaded before the desktop so the first render uses saved preferences.
 - Real OS preference effects stay connected to their existing owners: `useLocalTime.ts` controls wallpaper lighting, `Desktop.tsx` controls shortcut visibility, `App.tsx` applies cursor and motion modes, `Taskbar.tsx` formats the clock, `systemSounds.ts` plays opt-in UI tones, and `RecycleBinApp.tsx` displays Junny's protection flag.
 - The Settings interface and its fictional copy live in `src/components/settings/SettingsApp.tsx` and `settings.css`. Add a preference by extending `OsSettings` and `DEFAULT_SETTINGS`, adding safe parsing in `parseSettings`, providing its control and feedback in Settings, and connecting it to the existing OS component that owns the behavior. Do not add scattered localStorage reads.

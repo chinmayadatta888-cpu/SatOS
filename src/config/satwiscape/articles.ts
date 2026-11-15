@@ -1,6 +1,6 @@
 import type { SatwiscapeArticle } from './types'
 
-/** The four final fictional Satwiscape articles and their local pixel illustrations. */
+/** The five final fictional Satwiscape articles and their local pixel illustrations. */
 export const satwiscapeArticles: SatwiscapeArticle[] = [
   {
     id: 'junny-experience', slug: 'junny-shares-satwika-os-experience', publicationId: 'daily-satwi',
@@ -49,5 +49,17 @@ export const satwiscapeArticles: SatwiscapeArticle[] = [
     ],
     relatedArticleIds: ['deepak-letter', 'junny-experience'],
     keywords: ['Dishen', 'Satwika', 'behaviour', 'policies', 'terms'],
+  },
+  {
+    id: 'forehead-growth', slug: 'satwika-forehead-size', publicationId: 'satwika-chronicle',
+    headline: 'Satwika\'s forehead is expected to become double it\'s size in the coming days', subtitle: '',
+    author: 'Jathin', byline: '', publicationDate: '',
+    thumbnailPath: '/assets/satwiscape/satwika-chronicle.svg', mainImagePath: '/assets/satwiscape/satwika-chronicle.svg',
+    summary: 'Satwika ni chusina vallaki tana forehead size gurinchi telisina vishyame.',
+    paragraphs: [
+      'Satwika ni chusina vallaki tana forehead size gurinchi telisina vishyame. Ayithe oka football field antha unna forehead size roju roju ki adupu lekunda increase avtunnattu samacharam. Ranunna rojullo rendu football fields size avvochu ani nipunulu anchana vestunnaru. intha jarugutunte Satwika em peekutondo teliyadu kaani, 2028 FIFA World Cup match lu kotha football stadium lo plan chese avakaasalu unnay. "Bokka le" ani Jathin spandinchaga, vere vallu kanisam dekakapovadam tho yevaru pattinchukovatle. Asalu buzz leni ee vishyam meeda article rayadam kuda bokka\n\n-Jathin',
+    ],
+    relatedArticleIds: ['deepak-letter', 'junny-experience'],
+    keywords: ['Satwika', 'forehead', 'Jathin', 'football', 'World Cup'],
   },
 ]

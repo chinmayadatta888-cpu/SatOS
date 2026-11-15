@@ -89,9 +89,9 @@ A nostalgic, personal pixel-art desktop with the warmth of Windows XP. Wallpaper
 
 - Keep Junny HQ inside the existing shared desktop window. The birthday home uses a warm room built from layered crisp SVG shapes: a detailed window, shelves, framed mascot art, string lights, bunting, a desk lantern, wooden furniture, a rug, and a central birthday table.
 - Keep the cake on the table with its base aligned to the tabletop; position Junny beside it and layer the table front over his lower body. Keep the dialogue in its own responsive grid row below the scene so neither face nor cake is covered.
-- Keep only Home, Scrapbook, and Profile navigation. The birthday story is the default home; no manual expression controls, checklist, or surprise section should return unless requested.
-- Use the supplied mascot file in `public/assets/junny/` unchanged. Preserve its aspect ratio with `object-fit: contain` and nearest-neighbour rendering. Do not create substitute or duplicate scrapbook photos.
-- Keep the authored birthday script in `src/config/junny/birthdayDialogue.ts`, the editable letter and hidden message in `birthdayGift.ts`, profile in `profile.ts`, scrapbook metadata in `photos.ts`, and official notices in `announcements.ts`.
+- Keep only Home and Profile navigation. The birthday story is the default home; no manual expression controls, checklist, or surprise section should return unless requested.
+- Use the supplied mascot file in `public/assets/junny/` unchanged. Preserve its aspect ratio with `object-fit: contain` and nearest-neighbour rendering. Do not create substitute or duplicate photos.
+- Keep the authored birthday script in `src/config/junny/birthdayDialogue.ts`, the editable letter and hidden message in `birthdayGift.ts`, profile in `profile.ts`, and official notices in `announcements.ts`.
 - Let the explicit birthday flow drive Junny's expressions and cake stages. Continue through each wish line before offering wish confirmation; then keep lighting, blowing, cutting, and opening the present in order. Do not restore manual character-state controls or random dialogue.
 - Derive the room's day, evening, and night appearance from the existing `useLocalTime` hook. Keep character reactions brief and respect `prefers-reduced-motion`.
 

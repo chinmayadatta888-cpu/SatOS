@@ -6,14 +6,12 @@ import BirthdayDialoguePanel from './BirthdayDialoguePanel'
 import BirthdayGiftReveal from './BirthdayGiftReveal'
 import BirthdayRoomScene from './BirthdayRoomScene'
 import JunnyProfilePage from './JunnyProfilePage'
-import JunnyScrapbook from './JunnyScrapbook'
 import './junny.css'
 
-type Tab = 'home' | 'scrapbook' | 'profile'
+type Tab = 'home' | 'profile'
 
 const tabs: { id: Tab; label: string; icon: string }[] = [
   { id: 'home', label: 'Home', icon: '⌂' },
-  { id: 'scrapbook', label: 'Scrapbook', icon: '▧' },
   { id: 'profile', label: 'Profile', icon: '▣' },
 ]
 
@@ -142,7 +140,6 @@ export default function JunnyHQApp() {
         />
         <BirthdayDialoguePanel flow={flow} line={currentLine} onAction={handleStoryAction} disabled={storyInputLocked}/>
       </section>}
-      {tab === 'scrapbook' && <JunnyScrapbook onBack={() => setTab('home')}/>}
       {tab === 'profile' && <JunnyProfilePage/>}
     </main>
 

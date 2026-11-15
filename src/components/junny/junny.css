@@ -1,42 +1,5 @@
 .window-content.junny-window-content { min-height: 0; padding: 0; overflow: hidden; color: #4d4050; background: #f1e3c8; }
 .junny-hq-app { position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; container: junnyhq / inline-size; color: #514456; background: #f1e3c8; user-select: none; }
-.junny-scrapbook-view { min-width: 0; min-height: 0; height: 100%; flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden; color: #56485a; background: #f0e3ca; }
-.junny-scrapbook-header { min-height: 48px; flex: 0 0 auto; padding: 5px 8px; display: flex; align-items: center; gap: 9px; color: #fff8df; background: #715c70; border-bottom: 3px solid #4c3e53; }
-.junny-scrapbook-header > button { min-height: 28px; padding: 3px 7px; flex: 0 0 auto; color: #fff6de; background: #947181; border: 2px solid #4e4055; font-size: 10px; }
-.junny-scrapbook-header > div { min-width: 0; flex: 1 1 auto; }
-.junny-scrapbook-header > div > span { color: #e8d1bd; font-size: 7px; font-weight: 700; letter-spacing: .09em; }
-.junny-scrapbook-header h2 { margin: 1px 0 0; color: #fff7df; font-size: 15px; line-height: 1.1; }
-.junny-scrapbook-count { flex: 0 0 auto; color: #f2d98f; font-size: 9px; }
-.junny-scrapbook-paper { min-height: 0; flex: 1 1 auto; overflow: auto; padding: 12px clamp(9px, 3cqi, 24px); background-color: #fff7df; background-image: repeating-linear-gradient(0deg, transparent 0 26px, rgb(157 137 107 / 10%) 26px 27px); scrollbar-color: #b28b91 #eee0c2; }
-.junny-scrapbook-intro { margin: 0 0 9px; color: #82736d; font-size: 11px; }
-.junny-photo-wall { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 15px; }
-.junny-polaroid { position: relative; width: min(220px, 47%); min-width: 135px; padding: 8px 8px 9px; display: flex; flex-direction: column; align-items: stretch; gap: 4px; transform: rotate(-1.2deg); color: #514654; background: #fffdf1; border: 1px solid #c5b79b; box-shadow: 3px 4px 0 #ab977c; text-align: left; transition: transform .12s steps(2,end); }
-.junny-polaroid:nth-child(even) { transform: rotate(1.4deg); }
-.junny-polaroid:hover { z-index: 2; transform: translateY(-3px) rotate(0); box-shadow: 4px 6px 0 #a18d72; }
-.junny-polaroid:focus-visible { outline: 2px solid #815f7a; outline-offset: 3px; }
-.junny-washi-tape { position: absolute; z-index: 2; top: -6px; left: 37%; width: 28%; height: 13px; transform: rotate(-3deg); background: repeating-linear-gradient(90deg, #e89cac 0 5px, #f6c1bd 5px 9px); border-inline: 1px solid #ae7881; }
-.junny-polaroid-image { width: 100%; aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; background: #f0dfc8; border: 2px solid #655469; }
-.junny-polaroid-image img { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; }
-.junny-polaroid > strong { margin-top: 1px; color: #59495d; font-size: 13px; line-height: 1.2; }
-.junny-polaroid-caption { color: #a06375; font-size: 11px; font-weight: 700; }
-.junny-polaroid > small { color: #8e8174; font-size: 9px; }
-.junny-scrapbook-empty { padding: 15px; color: #786c69; background: #f3e9d2; border: 1px dashed #b6a387; font-size: 11px; }
-.junny-scrapbook-empty code { color: #76516b; }
-.junny-scrapbook-footer { margin-top: 15px; padding: 5px 2px; color: #a08d7c; border-top: 1px solid #d7c5a5; font-size: 8px; font-weight: 700; letter-spacing: .08em; }
-.junny-photo-viewer-backdrop { position: absolute; z-index: 20; inset: 0; padding: 10px; display: grid; place-items: center; background: rgb(37 39 54 / 76%); }
-.junny-photo-viewer { width: min(100%, 700px); height: min(100%, 620px); min-height: 0; padding: 5px; display: flex; flex-direction: column; overflow: hidden; color: #574a5a; background: #f4e8cc; border: 3px solid #635068; box-shadow: 5px 5px 0 #272839, inset 0 0 0 2px #fff8df; }
-.junny-photo-viewer > header { min-height: 35px; flex: 0 0 auto; padding: 3px 6px; display: flex; align-items: center; justify-content: space-between; color: #fff8df; background: #725d71; }
-.junny-photo-viewer > header > div > span { color: #e6d0b7; font-size: 7px; font-weight: 700; letter-spacing: .1em; }
-.junny-photo-viewer > header h3 { margin: 1px 0 0; font-size: 13px; line-height: 1.1; }
-.junny-photo-viewer-stage { min-height: 0; flex: 1 1 auto; padding: 7px; display: grid; grid-template-columns: 31px minmax(0, 1fr) 31px; align-items: center; gap: 6px; background: #d8d2c5; border: 2px solid #84758a; }
-.junny-photo-viewer-stage img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: contain; image-rendering: pixelated; }
-.junny-photo-viewer-stage > button { width: 29px; height: 32px; padding: 0; color: #fff7dd; background: #8d6d7e; border: 2px solid #554557; box-shadow: 1px 1px #b6a58b; font: 23px/20px var(--font-ui); }
-.junny-photo-viewer-stage > button:disabled { color: #ddd0c0; background: #a99c91; border-color: #877c74; box-shadow: none; }
-.junny-photo-viewer > p { margin: 6px 2px; color: #715c67; font-size: 11px; }
-.junny-photo-viewer > p small { display: block; margin-top: 2px; color: #8a7d72; font-size: 9px; }
-.junny-photo-viewer > footer { min-height: 19px; flex: 0 0 auto; padding: 3px 5px 0; display: flex; justify-content: space-between; color: #88766e; border-top: 1px solid #cbb99a; font-size: 8px; font-weight: 700; }
-
-
 /* Stage 7 birthday story redesign */
 .junny-hq-app { color: #514456; background: #f2e2c9; }
 .junny-topbar { min-height: 35px; flex: 0 0 auto; padding: 3px 10px; display: flex; align-items: center; gap: 12px; color: #fff5df; background: repeating-linear-gradient(90deg, #2764b2 0 18px, #2c6bbc 18px 26px); border: 2px solid #174d91; box-shadow: inset 1px 1px #80addd; }
@@ -56,7 +19,6 @@
 .junny-nav-tabs button.is-active { color: #584363; background: #ffe39a; border-color: #513d53; box-shadow: inset 1px 1px #fff2c0, 2px 2px #45364e; }
 .junny-nav-tabs button.is-active > span { color: #71436a; }
 .junny-app-main { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; overflow: auto; background: #eedcc4; }
-.junny-app-main > .junny-scrapbook-view { height: 100%; min-height: 0; flex: 1 0 auto; }
 .junny-home-view { min-width: 0; min-height: 270px; height: 100%; padding: 6px; display: grid; grid-template-rows: minmax(145px, 1fr) auto; gap: 7px; overflow: auto; }
 .birthday-room-scene { position: relative; min-width: 0; min-height: 145px; overflow: hidden; isolation: isolate; background: #be7770; border: 3px solid #594354; box-shadow: inset 0 0 0 2px #f8d4a6, 3px 3px #9c6b61; }
 .birthday-room-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }

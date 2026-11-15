@@ -338,7 +338,7 @@ export default function SettingsApp() {
     {confirmReset && <div className="settings-dialog-backdrop" onPointerDown={(event) => { if (event.target === event.currentTarget) closeReset() }}>
       <section ref={resetDialog} className="settings-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="settings-reset-title" aria-describedby="settings-reset-description">
         <header><span aria-hidden="true">↺</span><h2 id="settings-reset-title">Reset OS preferences?</h2></header>
-        <p id="settings-reset-description">Wallpaper, display, sound, personalization, and Junny preferences will return to their defaults. Photos, messages, scrapbook entries, achievements, and other content will stay untouched.</p>
+        <p id="settings-reset-description">Wallpaper, display, sound, personalization, and Junny preferences will return to their defaults. Photos, messages, achievements, and other content will stay untouched.</p>
         <footer><button type="button" onClick={closeReset}>Keep my settings</button><button type="button" className="settings-danger-button" onClick={() => { resetSettings(); closeReset(); flashNotice('Default preferences restored. Your memories are untouched.') }}>Reset preferences</button></footer>
       </section>
     </div>}

@@ -98,7 +98,7 @@ function PublicationPage({ publicationId, onArticle }: { publicationId: string; 
       <div className="sw-pub-section-label"><span>LATEST EDITION</span><i /><span>ALL STORIES ARE FICTIONAL</span></div>
       {articles.map((article) => <button className="sw-publication-story" key={article.id} type="button" style={{ '--publication-accent': publication.accent } as CSSProperties} onClick={() => onArticle(article.id)}>
         <img src={article.thumbnailPath} alt="" loading="lazy" />
-        <span><small>By {article.author} · {article.byline}</small><strong>{article.headline}</strong>{article.subtitle && <em>{article.subtitle}</em>}<b>Continue reading →</b></span>
+        <span><small>By {article.author}{article.byline ? ` · ${article.byline}` : ''}</small><strong>{article.headline}</strong>{article.subtitle && <em>{article.subtitle}</em>}<b>Continue reading →</b></span>
       </button>)}
       {articles.length === 0 && <p className="sw-empty-publication">This publication is preparing its first edition.</p>}
       <footer className="sw-site-footer"><span>{publication.name.toUpperCase()}</span><span>INDEPENDENTLY IMAGINARY SINCE TODAY</span></footer>
@@ -119,7 +119,7 @@ function ArticlePage({ articleId, onArticle, onPublication, onHome }: { articleI
           <span className="sw-fiction-label">FICTIONAL NEWS • FOR FUN</span>
           <h1>{article.headline}</h1>
           {article.subtitle && <p className="sw-article-subtitle">{article.subtitle}</p>}
-          <div className="sw-article-byline"><span>By <strong>{article.author}</strong><small>{article.byline}</small></span>{article.publicationDate && <time>{article.publicationDate}</time>}</div>
+          <div className="sw-article-byline"><span>By <strong>{article.author}</strong>{article.byline && <small>{article.byline}</small>}</span>{article.publicationDate && <time>{article.publicationDate}</time>}</div>
           <figure className="sw-article-figure"><img src={article.mainImagePath} alt="Pixel-art illustration for this fictional article" /><figcaption>A tiny illustration from the {publication.name} art desk.</figcaption></figure>
           <p className="sw-article-lede">{article.summary}</p>
           <div className="sw-article-body">{article.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>

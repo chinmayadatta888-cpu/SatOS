@@ -109,11 +109,6 @@ function PixelationControl({ value, onChange, compact = false }: { value: number
   </label>
 }
 
-function compactDate(date: string): string {
-  const parsed = new Date(date)
-  return Number.isNaN(parsed.getTime()) ? date : parsed.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
-}
-
 function Gallery({ selectedId, pixelation, onPixelationChange, onSelect, onOpen }: {
   selectedId: string
   pixelation: number
@@ -123,7 +118,7 @@ function Gallery({ selectedId, pixelation, onPixelationChange, onSelect, onOpen 
 }) {
   return <div className="photos-gallery">
     <div className="photos-gallery-toolbar">
-      <div className="photos-album-heading"><span className="photos-album-icon"><AlbumMark /></span><span><strong>Satwika’s album</strong><small>{photoEntries.length} little moments</small></span></div>
+      <div className="photos-album-heading"><span className="photos-album-icon"><AlbumMark /></span><span><strong>Satwika’s album</strong><small>{photoEntries.length} photos</small></span></div>
       <PixelationControl value={pixelation} onChange={onPixelationChange} />
     </div>
     <div className="photos-gallery-scroll" aria-label="Photo gallery">
@@ -134,7 +129,7 @@ function Gallery({ selectedId, pixelation, onPixelationChange, onSelect, onOpen 
             className={`photos-card${selected ? ' is-selected' : ''}`}
             key={photo.id}
             type="button"
-            aria-label={`${photo.title}, ${photo.date}`}
+            aria-label={photo.title}
             aria-pressed={selected}
             onFocus={() => onSelect(photo.id)}
             onMouseEnter={() => onSelect(photo.id)}
@@ -142,12 +137,10 @@ function Gallery({ selectedId, pixelation, onPixelationChange, onSelect, onOpen 
           >
             <span className="photos-thumbnail-frame"><PhotoSurface photo={photo} mode="pixelated" pixelation={pixelation} className="photos-thumbnail-media" /></span>
             <span className="photos-card-title">{photo.title}</span>
-            <span className="photos-card-date">{compactDate(photo.date)}</span>
           </button>
         })}
       </div>
     </div>
-    <div className="photos-gallery-footer"><span className="photos-footer-spark" aria-hidden="true">✦</span><span>Every little moment belongs here.</span><span className="photos-footer-count">{photoEntries.length} / {photoEntries.length}</span></div>
   </div>
 }
 
@@ -176,17 +169,12 @@ function PhotoViewer({ photo, index, pixelation, mode, onModeChange, onPixelatio
         <PhotoSurface key={`${photo.id}-${mode}`} photo={photo} mode={mode} pixelation={pixelation} className="photos-viewer-media" />
       </div>
       <aside className="photos-information">
-        <span className="photos-note-label">PHOTO NOTE</span>
         <h2>{photo.title}</h2>
-        <time>{photo.date}</time>
         <div className="photos-quality-switch" role="group" aria-label="Photo quality">
           <button type="button" aria-pressed={mode === 'pixelated'} className={mode === 'pixelated' ? 'is-active' : ''} onClick={() => onModeChange('pixelated')}>Pixel</button>
           <button type="button" aria-pressed={mode === 'original'} className={mode === 'original' ? 'is-active' : ''} onClick={() => onModeChange('original')}>Original</button>
         </div>
         {mode === 'pixelated' && <PixelationControl value={pixelation} onChange={onPixelationChange} compact />}
-        <small className="photos-original-note">Original keeps the supplied image untouched.</small>
-        <p className="photos-caption">{photo.caption}</p>
-        {photo.description && <p className="photos-description">{photo.description}</p>}
       </aside>
     </div>
   </div>
