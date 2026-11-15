@@ -33,6 +33,7 @@ function PixelSystemIcon({ kind }: { kind: 'wifi' | 'battery' }) {
 
 type Props = {
   now: Date
+  clockFormat: '12h' | '24h'
   startOpen: boolean
   calendarOpen: boolean
   windows: ManagedWindow[]
@@ -42,8 +43,8 @@ type Props = {
   onToggleCalendar: () => void
 }
 
-export default function Taskbar({ now, startOpen, calendarOpen, windows, activeWindowId, onWindowButtonClick, onToggleStart, onToggleCalendar }: Props) {
-  const time = now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+export default function Taskbar({ now, clockFormat, startOpen, calendarOpen, windows, activeWindowId, onWindowButtonClick, onToggleStart, onToggleCalendar }: Props) {
+  const time = now.toLocaleTimeString(undefined, { hour: clockFormat === '24h' ? '2-digit' : 'numeric', minute: '2-digit', hour12: clockFormat === '12h' })
   const date = now.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
 
   return <div className="taskbar" role="toolbar" aria-label="Desktop taskbar">

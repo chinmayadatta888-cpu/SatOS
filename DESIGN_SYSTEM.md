@@ -108,3 +108,14 @@ A nostalgic, personal pixel-art desktop with the warmth of Windows XP. Wallpaper
 - Stars appear only in the night layer and twinkle through opacity changes rather than scaling, preserving their crisp pixel edges.
 - The sun and moon are compact stepped pixel clusters without soft blur filters.
 - Respect `prefers-reduced-motion`. Boot duration stays around 3.7 seconds and its green segments continue moving until completion or skip.
+
+## Settings Control Panel
+
+- Keep Settings inside the existing shared application window. Build its interface in `src/components/settings/SettingsApp.tsx` and `settings.css`; do not create a second window or replace the desktop shell.
+- Use the established blue pixel title band, cream content area, plum category rail, square borders, restrained repeating pixel bands, and hard-edged shadows. Keep controls compact but readable in Pixelify Sans; reserve Press Start 2P for short labels.
+- Keep category navigation and the main panel independently scrollable. The main content may scroll vertically, but must not overflow horizontally. Use the existing app container width for responsive breakpoints so resized windows adapt without relying on the desktop viewport.
+- Use native buttons with visible focus outlines, switch roles and checked state for toggles, labelled range inputs with visible values, and pressed states for segmented choices. Keep the reset confirmation keyboard-operable and clearly state that app content is not removed.
+- Show brief status feedback beside the relevant settings. Diagnostics and update checks may use short pixel scanning effects; avoid long or intrusive animation, and respect the shell's motion preference.
+- Keep saved preference types, defaults, and validation in `src/config/settings.ts`; the context in `src/context/SettingsContext.tsx` owns persistence under `satwika.os-settings.v1`. Add controls to Settings and connect real effects through the existing component or service that owns that behavior. Do not scatter localStorage access through views.
+- Functional controls include automatic/day/night wallpaper lighting, desktop shortcut visibility, pixel cursor, UI/reduced motion, system sound toggle and volume, and taskbar clock format. Junny protection only changes its status in the fictional Recycle Bin; it does not affect real files.
+- Mark playful preferences and local-only sequences honestly. Potato Mode does not reduce artwork quality, Main Character Mode only displays an optional message, cuteness and seriousness are fictional display values, Dramatic Startup is preference-only in this edition, and update checks never contact a server.

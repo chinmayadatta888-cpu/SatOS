@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSettings } from '../context/SettingsContext'
 
 function getMinutes(now: Date): number {
   const params = new URLSearchParams(window.location.search)
@@ -25,6 +26,7 @@ function getNightAmount(minutes: number): number {
 }
 
 export function useLocalTime() {
+  const { settings } = useSettings()
   const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
@@ -32,5 +34,7 @@ export function useLocalTime() {
     return () => window.clearInterval(timer)
   }, [])
 
-  return { now, nightAmount: getNightAmount(getMinutes(now)) }
+  const automaticNightAmount = getNightAmount(getMinutes(now))
+  const nightAmount = settings.wallpaperMode === 'day' ? 0 : settings.wallpaperMode === 'night' ? 1 : automaticNightAmount
+  return { now, nightAmount }
 }

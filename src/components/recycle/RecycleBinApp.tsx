@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { emptyBinMessages, recycleMemories, type RecycleMemory } from '../../config/recycleBin'
+import { useSettings } from '../../context/SettingsContext'
 
 function MemoryIcon({ kind }: { kind: RecycleMemory['kind'] }) {
   return <svg viewBox="0 0 40 40" className={`recycle-memory-art memory-${kind}`} aria-hidden="true" shapeRendering="crispEdges">
@@ -23,18 +24,21 @@ function BinArtwork() {
 }
 
 export default function RecycleBinApp() {
+  const { settings } = useSettings()
   const [messageIndex, setMessageIndex] = useState<number | null>(null)
   const [attempts, setAttempts] = useState(0)
+  const [protectionMessage, setProtectionMessage] = useState('')
 
   function refuseEmpty() {
     setMessageIndex(attempts % emptyBinMessages.length)
+    setProtectionMessage(settings.bearProtection ? "Junny's extra protection flag is active for Happiness.exe." : 'This bin is a simulation; no apps or real files can be deleted.')
     setAttempts(attempts + 1)
   }
 
   return <section className="recycle-app" aria-label="Recycle Bin">
     <header className="recycle-heading">
       <span className="recycle-heading-art"><BinArtwork /></span>
-      <div><p className="recycle-eyebrow">A VERY SAFE LITTLE CORNER</p><h1>Recycle Bin</h1><p className="recycle-status"><span aria-hidden="true">●</span> Your memories are safe here.</p></div>
+      <div><p className="recycle-eyebrow">A VERY SAFE LITTLE CORNER</p><h1>Recycle Bin</h1><p className="recycle-status"><span aria-hidden="true">●</span> Your memories are safe here.</p><p className="recycle-protection-state">Junny protection: {settings.bearProtection ? 'ENABLED' : 'disabled · bin remains non-destructive'}</p></div>
       <div className="recycle-entry-count"><strong>{recycleMemories.length}</strong><span>kept safe</span></div>
     </header>
     <div className="recycle-toolbar"><span>NAME <i>⌄</i></span><span>TYPE</span><span>SIZE</span><span>ADDED</span></div>
@@ -52,7 +56,7 @@ export default function RecycleBinApp() {
     </div>
     {messageIndex !== null && <div className="recycle-refusal" role="alert">
       <span className="recycle-refusal-icon" aria-hidden="true">!</span>
-      <div><strong>Operation protected</strong><p>{emptyBinMessages[messageIndex]}</p></div>
+      <div><strong>Operation protected</strong><p>{emptyBinMessages[messageIndex]}</p><p>{protectionMessage}</p></div>
       <button type="button" aria-label="Dismiss message" onClick={() => setMessageIndex(null)}>×</button>
     </div>}
     <span className="recycle-attempt-count" aria-live="polite">{attempts > 0 ? `Safe attempts: ${attempts}` : 'Nothing here can be erased.'}</span>

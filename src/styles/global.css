@@ -25,6 +25,10 @@ button:focus-visible { outline: 2px solid #fff3a9; outline-offset: 2px; }
 .satwika-shell { position: relative; width: 100%; height: 100%; min-height: 420px; overflow: hidden; background: #183453; cursor: url('/cursors/arrow.svg') 2 2, default; }
 .satwika-shell button, .satwika-shell a { cursor: url('/cursors/hand.svg') 8 3, pointer; }
 .satwika-shell input, .satwika-shell textarea, .satwika-shell [contenteditable="true"] { cursor: url('/cursors/text.svg') 12 12, text; }
+.satwika-shell.system-cursor-off, .satwika-shell.system-cursor-off * { cursor: auto !important; }
+.satwika-shell.system-cursor-off button, .satwika-shell.system-cursor-off a, .satwika-shell.system-cursor-off input[type="button"], .satwika-shell.system-cursor-off input[type="submit"] { cursor: pointer !important; }
+.satwika-shell.system-cursor-off input, .satwika-shell.system-cursor-off textarea, .satwika-shell.system-cursor-off [contenteditable="true"] { cursor: text !important; }
+.satwika-shell.motion-reduced *, .satwika-shell.motion-reduced *::before, .satwika-shell.motion-reduced *::after { animation-duration: 0s !important; animation-delay: 0s !important; transition-duration: 0s !important; scroll-behavior: auto !important; }
 
 /* Desktop landscape */
 .desktop { position: absolute; z-index: 1; isolation: isolate; inset: 0 0 48px; overflow: hidden; touch-action: none; user-select: none; }
@@ -455,6 +459,7 @@ button:focus-visible { outline: 2px solid #fff3a9; outline-offset: 2px; }
 .recycle-eyebrow { margin: 0 0 1px; color: #688273; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
 .recycle-heading h1 { margin: 0; color: #374b5c; font-size: 25px; line-height: 1.1; }
 .recycle-status { margin: 4px 0 0; color: #53745d; font-size: 13px; }.recycle-status > span { color: #61a169; font-size: 11px; }
+.recycle-protection-state { margin: 2px 0 0; color: #81736e; font-size: 9px; font-weight: 700; }
 .recycle-entry-count { max-width: 73px; padding: 5px; display: flex; flex-direction: column; align-items: center; color: #465b61; background: #f7f2d8; border: 2px solid #78928a; box-shadow: 2px 2px 0 #aab3a0; }.recycle-entry-count strong { font-size: 22px; line-height: 1; }.recycle-entry-count span { font-size: 10px; white-space: nowrap; }
 .recycle-toolbar, .recycle-file-row { display: grid; grid-template-columns: minmax(200px, 2.1fr) minmax(90px, 1fr) minmax(48px, .55fr) minmax(90px, 1fr); align-items: center; gap: 8px; }
 .recycle-toolbar { min-height: 29px; padding: 4px 11px; color: #52656a; background: #e5e4d4; border-bottom: 2px solid #b9b6a4; font-size: 10px; font-weight: 700; }
@@ -472,6 +477,7 @@ button:focus-visible { outline: 2px solid #fff3a9; outline-offset: 2px; }
 .recycle-refusal { position: absolute; z-index: 1; left: 50%; top: 50%; width: min(calc(100% - 30px), 340px); min-height: 82px; padding: 10px 35px 10px 12px; display: flex; align-items: center; gap: 10px; transform: translate(-50%, -42%); color: #4f4654; background: #fff3d4; border: 3px solid #67505e; box-shadow: 4px 4px 0 #4e4656, inset 0 0 0 2px #fffdf0; animation: recycle-message-in .16s steps(3, end); }
 .recycle-refusal-icon { width: 30px; height: 30px; flex: 0 0 auto; display: grid; place-items: center; color: #fff8df; background: #bb6b72; border: 2px solid #624657; box-shadow: 2px 2px 0 #a69479; font-size: 19px; font-weight: 700; }
 .recycle-refusal strong { color: #6e4e67; font-size: 14px; }.recycle-refusal p { margin: 2px 0 0; color: #615964; font-size: 13px; line-height: 1.25; }
+.recycle-refusal p + p { color: #53745d; font-size: 11px; }
 .recycle-refusal > button { position: absolute; top: 4px; right: 5px; width: 22px; height: 22px; color: #fff8df; background: #9a6070; border: 1px solid #60465a; font-size: 17px; line-height: 15px; }
 .recycle-attempt-count { min-height: 20px; padding: 2px 9px; color: #758078; background: #eeecdf; font-size: 10px; text-align: right; }
 .recycle-drop-toast { position: absolute; z-index: 8; max-width: 276px; min-height: 36px; padding: 6px 9px 6px 6px; display: flex; align-items: center; gap: 7px; color: #fff9e6; background: #6c536c; border: 2px solid #fff0ce; box-shadow: 3px 3px 0 #3d3549, inset 0 0 0 1px #c29a9e; font-size: 13px; font-weight: 700; pointer-events: none; animation: recycle-toast-in .16s steps(3, end); }

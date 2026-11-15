@@ -22,6 +22,8 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 **Stage 7 final repair — Junny HQ: birthday story and responsive layouts verified; only one supplied Junny portrait is currently available.**
 
+**Stage 8 — Settings application: complete.**
+
 ## Completed features
 
 - React, TypeScript, and Vite project foundation with modular components.
@@ -53,7 +55,11 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Junny HQ navigation is limited to Home, Scrapbook, and Profile. The scrapbook keeps its polaroid gallery and photo viewer; Profile retains the official mascot details.
 - Birthday dialogue is in `src/config/junny/birthdayDialogue.ts`; gift and hidden-message copy is in `birthdayGift.ts`; profile, notices, and photo metadata remain in their dedicated config files.
 - The supplied image remains unchanged at `public/assets/junny/junny_pixell_1.png`; one source image is used without inventing extra photos. Room lighting continues to use `useLocalTime.ts`.
-- Settings remains a clearly marked placeholder.
+- Settings Control Panel with Appearance, Display, Sounds, Personalization, Junny Management, Diagnostics, Experimental Features, and About categories.
+- Persistent real settings for automatic/day/night wallpaper, desktop shortcut visibility, pixel cursor, UI/reduced motion, system sound effects and volume, and 12/24-hour taskbar clock. Start Menu access remains available when desktop icons are hidden.
+- Junny Management with saved CEO authority, virtual hugs, nap and Recycle Bin protection preferences, cuteness calibration, and the Employee of the Month panel. Recycle Bin protection stays fictional and non-destructive.
+- Short local diagnostics and update sequences, version-click developer easter egg, optional humorous notices, and seriousness calibration. Potato Mode, Main Character Mode, and cuteness values are playful preferences; Dramatic Startup is clearly marked as a saved preference with no startup effect in this edition.
+- A confirmed Settings-only reset that leaves photos, messages, scrapbook entries, achievements, and other app content untouched.
 - Bundled Pixelify Sans and Press Start 2P fonts for local, consistent pixel-inspired type.
 - Refined landscape contours with hand-placed grass and flower clusters, textured hill shading, and a smaller cratered moon.
 - Rebuilt the taskbar, Start button, tray symbols, calendar controls, and popups with hard-edged pixel surfaces.
@@ -89,6 +95,10 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - At all three sizes, the cake stayed within about half a pixel of the tabletop line; the bear and cake had a visible gap, dialogue remained below the scene, and no horizontal overflow occurred. A missing implicit favicon request was identified and replaced with a local Satwika pixel mark; the refreshed browser reported no failed requests, console errors, or uncaught exceptions.
 - Checked the Home, Scrapbook, and Profile navigation, the single scrapbook photo viewer, and minimize, maximize, restore, taskbar restore, close, and reopen behavior. Minimize preserved the current view; closing and reopening reset it.
 - Junny HQ remains in the existing `AppWindow` and app ID; no other OS application behavior was changed.
+- Built the final Settings stage successfully with `npm run build`.
+- Ran 44 browser interaction checks: Settings launch from desktop and Start Menu; wallpaper, display, sound, personalization, Junny, and experimental controls; diagnostics, local update check and version easter egg; reset keyboard flow and reload persistence. All checks passed, with no uncaught browser exceptions.
+- Verified hidden desktop shortcuts leave all eight applications available in the Start Menu; opened Photos, Note For You, Achievements, Recycle Bin, Satwiscape, Message to CD, and Junny HQ through the shared window manager. Recycle Bin reflected Junny's protection setting and remained non-destructive.
+- Maximized Settings at 900 × 650, 1200 × 750, and 1582 × 804. The window fit the available desktop area, category navigation remained usable, and the main panel had no horizontal overflow.
 - Built Stage 2 successfully with `npm run build`.
 - Manually checked marquee and additive selection, group dragging, shortcut double-click and Enter launch, Delete to Recycle Bin, Escape clearing, window drag/resize/maximize/restore/minimize/close, taskbar switching and toggles, and Alt+F4.
 - Confirmed the custom cursor rules resolve to the corresponding SVGs and the browser console has no errors.
@@ -102,7 +112,6 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 ## Pending features
 
-- Settings application experience.
 - Additional Junny scrapbook photos if supplied.
 - Supabase project creation, migration execution, owner-user allowlisting, Vercel environment configuration, and live remote-storage verification.
 - Any additional stages requested by the project owner.
@@ -130,3 +139,7 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Junny's birthday and identity data is split across `src/config/junny/birthdayDialogue.ts`, `birthdayGift.ts`, `profile.ts`, `announcements.ts`, and `photos.ts`; mascot art belongs in `public/assets/junny/`.
 - Junny HQ retains the existing app ID `teddy` so the current shortcut, Start Menu entry, and shared window behavior remain connected; its visible app name is now `Junny HQ`.
 - Junny HQ uses `useLocalTime.ts` for room lighting and the supplied portrait only; it preserves the source PNG bytes and the scrapbook has one entry because only one supplied portrait is available.
+- OS preference defaults and validation live in `src/config/settings.ts`; `src/context/SettingsContext.tsx` loads, persists, resets, and synchronizes the single `satwika.os-settings.v1` localStorage record. Settings are loaded before the desktop so the first render uses saved preferences.
+- Real OS preference effects stay connected to their existing owners: `useLocalTime.ts` controls wallpaper lighting, `Desktop.tsx` controls shortcut visibility, `App.tsx` applies cursor and motion modes, `Taskbar.tsx` formats the clock, `systemSounds.ts` plays opt-in UI tones, and `RecycleBinApp.tsx` displays Junny's protection flag.
+- The Settings interface and its fictional copy live in `src/components/settings/SettingsApp.tsx` and `settings.css`. Add a preference by extending `OsSettings` and `DEFAULT_SETTINGS`, adding safe parsing in `parseSettings`, providing its control and feedback in Settings, and connecting it to the existing OS component that owns the behavior. Do not add scattered localStorage reads.
+- Experimental personality choices are explicitly fictional; Potato Mode does not degrade visuals, Main Character Mode only offers an optional message, cuteness and seriousness are display preferences, and Dramatic Startup does not change this edition's boot sequence. Update checks are local-only and never contact a server.

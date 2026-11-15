@@ -7,7 +7,10 @@ import RecycleBinApp from '../recycle/RecycleBinApp'
 import SatwiscapeApp from '../satwiscape/SatwiscapeApp'
 import MessageToCDApp from '../message/MessageToCDApp'
 import JunnyHQApp from '../junny/JunnyHQApp'
+import SettingsApp from '../settings/SettingsApp'
 import type { ManagedWindow, WindowRect } from '../../types/window'
+import { useSettings } from '../../context/SettingsContext'
+import { playSystemSound } from '../../services/systemSounds'
 
 type ResizeEdge = 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw'
 type Gesture = { pointerId: number; x: number; y: number; rect: WindowRect; edge?: ResizeEdge }
@@ -33,6 +36,7 @@ function WindowGlyph({ kind }: { kind: 'minimize' | 'maximize' | 'restore' | 'cl
 }
 
 function AppWindow({ window, active, boundsWidth, boundsHeight, onFocus, onMove, onResize, onMinimize, onMaximize, onClose }: Props) {
+  const { settings } = useSettings()
   const titleDrag = useRef<Gesture | null>(null)
   const resizeDrag = useRef<Gesture | null>(null)
   const minWidth = Math.min(320, boundsWidth)
@@ -117,12 +121,12 @@ function AppWindow({ window, active, boundsWidth, boundsHeight, onFocus, onMove,
       <span className="window-title-icon"><PixelIcon id={window.appId} /></span>
       <strong id={`window-title-${window.id}`} className="window-title">{window.title}</strong>
       <div className="window-controls">
-        <button type="button" className="window-control" aria-label={`Minimize ${window.title}`} title="Minimize" onClick={() => onMinimize(window.id)}><WindowGlyph kind="minimize" /></button>
-        <button type="button" className="window-control" aria-label={`${window.maximized ? 'Restore' : 'Maximize'} ${window.title}`} title={window.maximized ? 'Restore' : 'Maximize'} onClick={() => onMaximize(window.id)}><WindowGlyph kind={window.maximized ? 'restore' : 'maximize'} /></button>
-        <button type="button" className="window-control window-close" aria-label={`Close ${window.title}`} title="Close" onClick={() => onClose(window.id)}><WindowGlyph kind="close" /></button>
+        <button type="button" className="window-control" aria-label={`Minimize ${window.title}`} title="Minimize" onClick={() => { if (settings.systemSounds) playSystemSound('click', settings.systemVolume); onMinimize(window.id) }}><WindowGlyph kind="minimize" /></button>
+        <button type="button" className="window-control" aria-label={`${window.maximized ? 'Restore' : 'Maximize'} ${window.title}`} title={window.maximized ? 'Restore' : 'Maximize'} onClick={() => { if (settings.systemSounds) playSystemSound('click', settings.systemVolume); onMaximize(window.id) }}><WindowGlyph kind={window.maximized ? 'restore' : 'maximize'} /></button>
+        <button type="button" className="window-control window-close" aria-label={`Close ${window.title}`} title="Close" onClick={() => { if (settings.systemSounds) playSystemSound('close', settings.systemVolume); onClose(window.id) }}><WindowGlyph kind="close" /></button>
       </div>
     </div>
-    <div className={`window-content${window.appId === 'photos' ? ' photos-window-content' : ''}${['note', 'achievements', 'recycle', 'satwiscape', 'message', 'teddy'].includes(window.appId) ? ` ${window.appId === 'teddy' ? 'junny' : window.appId}-window-content` : ''}`}>
+    <div className={`window-content${window.appId === 'photos' ? ' photos-window-content' : ''}${['note', 'achievements', 'recycle', 'satwiscape', 'message', 'teddy', 'settings'].includes(window.appId) ? ` ${window.appId === 'teddy' ? 'junny' : window.appId}-window-content` : ''}`}>
       {window.appId === 'photos' ? <PhotosApp />
         : window.appId === 'note' ? <NoteForYouApp />
         : window.appId === 'achievements' ? <AchievementsApp />
@@ -130,6 +134,7 @@ function AppWindow({ window, active, boundsWidth, boundsHeight, onFocus, onMove,
         : window.appId === 'satwiscape' ? <SatwiscapeApp />
         : window.appId === 'message' ? <MessageToCDApp />
         : window.appId === 'teddy' ? <JunnyHQApp />
+        : window.appId === 'settings' ? <SettingsApp />
         : <div className="window-placeholder">
           <div className={`window-placeholder-icon icon-${window.appId}`}><PixelIcon id={window.appId} /></div>
           <div className="window-placeholder-copy">

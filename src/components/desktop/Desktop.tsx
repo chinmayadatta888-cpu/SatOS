@@ -4,6 +4,7 @@ import type { useWindowManager } from '../../hooks/useWindowManager'
 import PixelLandscape from './PixelLandscape'
 import DesktopIcon from './DesktopIcon'
 import WindowLayer from '../windows/WindowLayer'
+import { useSettings } from '../../context/SettingsContext'
 
 type Point = { x: number; y: number }
 type DragState = { pointerId: number; id: string; pointerX: number; pointerY: number; ids: string[]; origins: Record<string, Point>; moved: boolean }
@@ -57,6 +58,7 @@ function isEditable(target: EventTarget | null): boolean {
 }
 
 export default function Desktop({ nightAmount, onOpen, windowManager }: { nightAmount: number; onOpen: (app: DesktopApp) => void; windowManager: WindowManager }) {
+  const { settings } = useSettings()
   const desktopRef = useRef<HTMLElement>(null)
   const dragRef = useRef<DragState | null>(null)
   const marqueeRef = useRef<MarqueeState | null>(null)
@@ -266,7 +268,7 @@ export default function Desktop({ nightAmount, onOpen, windowManager }: { nightA
   >
     <PixelLandscape nightAmount={nightAmount} />
     <div className="desktop-wash" aria-hidden="true" />
-    {desktopApps.map((app) => <DesktopIcon
+    {settings.showDesktopIcons && desktopApps.map((app) => <DesktopIcon
       key={app.id}
       app={app}
       selected={selectedIds.includes(app.id)}
