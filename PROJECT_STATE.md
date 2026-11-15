@@ -1,0 +1,132 @@
+# Satwika OS — project state
+
+## Overview
+
+Satwika OS is a personal, pixel-art desktop environment inspired by the warmth and playfulness of Windows XP. The visual experience is designed as a small birthday world for Satwika.
+
+## Current stage
+
+**Stage 1 — Foundation & Desktop Environment: complete.**
+
+**Visual Refinement 01 — Pixel-Art Consistency, Wallpaper Enhancement & Boot Screen: complete.**
+
+**Stage 2 — Desktop Interactions & Window Management: complete.**
+
+**Stage 3 — Photos Application: complete.**
+
+**Stage 4 — Personal Applications: complete.**
+
+**Stage 5 — Satwiscape Internet Browser: complete.**
+
+**Stage 6 — Message to CD: implementation complete; Supabase project setup is pending.**
+
+**Stage 7 final repair — Junny HQ: birthday story and responsive layouts verified; only one supplied Junny portrait is currently available.**
+
+## Completed features
+
+- React, TypeScript, and Vite project foundation with modular components.
+- Original responsive SVG pixel landscape with smoothly blending daytime and nighttime scenes, animated stars, clouds, sun, and moon.
+- Local-time wallpaper cycle with the `?satwikaTime=HH:mm` visual testing override.
+- Eight custom pixel-art desktop shortcuts with Ctrl/Command multi-selection, marquee selection, group dragging, and session-scoped position retention.
+- XP-inspired fixed taskbar, local clock/date, Wi-Fi and charging indicators, and Satwika Start button.
+- Navigable calendar popup with current-day highlight, November 16 birthday marker and cake icon, and birthday message.
+- Start menu with app shortcuts and Satwika OS branding.
+- Session-only boot intro with progress animation and skip control.
+- Shared application windows for all eight shortcuts with focus order, titlebar dragging, eight-way resizing, minimize, maximize/restore, close, and viewport clamping.
+- Taskbar buttons for open apps with focus switching and minimize/restore toggles. Opening an app again restores and focuses its existing window.
+- Keyboard interactions for Enter (open one selected shortcut), Escape (clear desktop selection), Alt+F4 (close the active window), and Delete (open Recycle Bin).
+- Custom SVG pixel cursors for the desktop pointer, links/buttons, text, moving windows, and all resize directions.
+- Photos app with a scrollable 12-entry album, central editable metadata, adjustable pixelated thumbnails, an original-quality viewer, previous/next controls, keyboard navigation, and custom loading/error states.
+- Note For You with an animated sealed envelope, a configurable read-only letter, and a notepad-style view.
+- Achievements with 10 configurable entries, custom pixel badge artwork, a derived unlocked count, scrolling, and a detail panel.
+- Recycle Bin with fictional keepsakes, rotating non-destructive empty-bin notices, and icon-drop protection that restores desktop shortcuts and shows a toast.
+- Satwiscape with controlled internal routes, independent tabs and back/forward histories, scroll restoration, address/search navigation, five fictional publications and articles, configurable hidden pages, and a rotating custom 404.
+- SatwiSearch homepage with trending searches and local article links; Favorites and recent history panels persist on this device.
+- Message to CD with a 2,000-character multiline editor, validation, local demo persistence, explicit demo/remote labels, confirmed-save success, and retryable failure that preserves the draft.
+- Supabase message storage with a typed client, public insert-only privileges, RLS-protected owner operations, password sign-in, and a private owner allowlist.
+- A separate owner inbox at `/admin/messages` with newest-first messages, full paragraph formatting, read/unread controls, delete confirmation, and manual refresh.
+- A Vercel rewrite for the owner inbox route and `SUPABASE_SETUP.md` with project, database, authentication, environment, deployment, and test instructions.
+- Junny HQ keeps the existing Teddy Bear desktop/Start Menu slot and shared window while using an authored, gated birthday story.
+- The room uses layered pixel-style SVG scenery, string lights, a window and shelves, a desk lantern, a floor rug, a central table, and the supplied Junny artwork. The cake sits at the tabletop line beside Junny; the dialogue occupies a separate responsive row below the room.
+- The single supplied Junny portrait is reused unchanged. Story expressions use distinct pixel marks, a thought bubble, small pose and colour shifts, and celebration effects rather than fabricated photos or manual controls.
+- The story includes the birthday greeting, rescue-game memory, cake reveal, lighting, three wish lines and confirmation, blowing out candles, celebration, cutting and serving a slice, hidden message, gift and personal letter, a clear ending, and replay.
+- Junny HQ navigation is limited to Home, Scrapbook, and Profile. The scrapbook keeps its polaroid gallery and photo viewer; Profile retains the official mascot details.
+- Birthday dialogue is in `src/config/junny/birthdayDialogue.ts`; gift and hidden-message copy is in `birthdayGift.ts`; profile, notices, and photo metadata remain in their dedicated config files.
+- The supplied image remains unchanged at `public/assets/junny/junny_pixell_1.png`; one source image is used without inventing extra photos. Room lighting continues to use `useLocalTime.ts`.
+- Settings remains a clearly marked placeholder.
+- Bundled Pixelify Sans and Press Start 2P fonts for local, consistent pixel-inspired type.
+- Refined landscape contours with hand-placed grass and flower clusters, textured hill shading, and a smaller cratered moon.
+- Rebuilt the taskbar, Start button, tray symbols, calendar controls, and popups with hard-edged pixel surfaces.
+- Replaced the card-style boot intro with a minimal black screen and continuously moving green pixel segments.
+
+## Verification completed
+
+- `npm run build` passed after implementation and refinement.
+- Visually inspected the desktop at 1366×768 in both day (`?satwikaTime=12:00`) and night (`?satwikaTime=22:00`) modes, including the pixel taskbar and refined hill details.
+- Checked Start Menu open, shortcut placeholder feedback, calendar navigation, November 16 birthday marker/message, and outside-click dismissal.
+- Dragged a desktop shortcut and confirmed its position remained after a page reload in the same browser session.
+- Inspected the black boot screen and moving green segments; used Skip and observed the automatic transition after about 3.7 seconds.
+- Confirmed the boot intro does not replay after a reload in the same browser session.
+- Checked the browser console for errors; none were reported.
+- Built Stage 4 successfully with `npm run build`.
+- Confirmed by source inspection that the Recycle Bin only reads its mock configuration and changes in-app message state; it performs no filesystem operations.
+- Browser interaction checks for Stage 4 could not be completed because the computer-use bridge failed to initialize (`failed to write kernel assets: The system cannot find the path specified`).
+- Built Stage 5 successfully with `npm run build`.
+- Confirmed Satwiscape content and five article illustrations are local and that the browser code uses only controlled `satwiscape://` routes; it contains no embedded browser, external fetch, or dynamic HTML execution.
+- Exercised the route/search model through Vite's local module loader: birthday and cute searches matched their stories, an unrelated query returned the custom 404, publication/article/secret routes resolved, and an external URL resolved only to the internal 404.
+- Confirmed the homepage and all five local article illustrations returned HTTP 200 from the Vite development server.
+- Browser interaction checks for Stage 5 could not be completed because the computer-use bridge again failed to initialize (`failed to write kernel assets: The system cannot find the path specified`).
+- Built Stage 6 successfully with `npm run build`.
+- Exercised the message service through Vite's module loader: verified demo-mode selection, blank and over-limit rejection, surrounding whitespace trimming, paragraph preservation, local persistence, and a storage failure without success.
+- Confirmed `/` and `/admin/messages` both return the SPA shell in the Vite development server, and that `vercel.json` contains the inbox rewrite.
+- Reviewed the migration and browser services for RLS, insert-only public access, owner authentication, owner-only read/update/delete rules, absence of a frontend service-role key, and preserved drafts on submission error.
+- `npm audit --omit=dev` reported zero production dependency vulnerabilities. The full audit still flags the existing Vite/esbuild development toolchain; the available fix requires a Vite major upgrade.
+- A live Supabase insert, Auth flow, and database-policy test remain pending project setup because no Supabase credentials or project are configured. The browser UI interaction check could not run because the computer-use bridge failed to initialize (`failed to write kernel assets: The system cannot find the path specified`); normal/maximized visual checks remain unverified.
+- Built the Stage 7 final repair successfully with `npm run build`.
+- Reproduced the stuck wish interaction: the button showed “I made my wish” on every wish line, while the state machine only accepts that action on the last line. The panel now offers Continue until the final wish line and only then offers wish confirmation.
+- Fixed a shared `.birthday-cake` style collision that reduced the room cake to 10 × 10 pixels. The calendar now has its own icon class; the scene cake is positioned and sized within Junny's room, with its base aligned to the tabletop.
+- Verified the full story at 900 × 650, 1200 × 750, and the maximized 1582 × 804 available viewport. Each run reached the final letter, closed it, and replayed; wish labels, lit flames, extinguished candles and smoke, and the served cake slice were checked.
+- At all three sizes, the cake stayed within about half a pixel of the tabletop line; the bear and cake had a visible gap, dialogue remained below the scene, and no horizontal overflow occurred. A missing implicit favicon request was identified and replaced with a local Satwika pixel mark; the refreshed browser reported no failed requests, console errors, or uncaught exceptions.
+- Checked the Home, Scrapbook, and Profile navigation, the single scrapbook photo viewer, and minimize, maximize, restore, taskbar restore, close, and reopen behavior. Minimize preserved the current view; closing and reopening reset it.
+- Junny HQ remains in the existing `AppWindow` and app ID; no other OS application behavior was changed.
+- Built Stage 2 successfully with `npm run build`.
+- Manually checked marquee and additive selection, group dragging, shortcut double-click and Enter launch, Delete to Recycle Bin, Escape clearing, window drag/resize/maximize/restore/minimize/close, taskbar switching and toggles, and Alt+F4.
+- Confirmed the custom cursor rules resolve to the corresponding SVGs and the browser console has no errors.
+- Rechecked Start Menu launch and the November 16 birthday calendar marker after Stage 2 changes.
+- Built Stage 3 successfully with `npm run build`.
+- Launched Photos from both the desktop and Start Menu; opened all 12 album entries and confirmed each uses the same supplied PNG.
+- Checked the pixelated/original toggle, pixelation slider, previous/next buttons with wraparound, arrow-key navigation, Escape return, and a no-op click on the displayed image.
+- Resized Photos to a compact window, maximized/restored it, and verified taskbar minimize/restore and close/reopen behavior.
+- Temporarily used a missing image path to verify the custom unavailable-photo state, restored the real path, and confirmed all 12 thumbnails loaded again.
+- Checked the browser console for errors; none were reported.
+
+## Pending features
+
+- Settings application experience.
+- Additional Junny scrapbook photos if supplied.
+- Supabase project creation, migration execution, owner-user allowlisting, Vercel environment configuration, and live remote-storage verification.
+- Any additional stages requested by the project owner.
+
+## Known bugs
+
+- No open Junny HQ defects remain from this repair pass. Live Stage 6 Supabase operations remain unverified until a project is configured.
+
+## Architectural decisions
+
+- React + TypeScript + Vite, with functional components and CSS in `src/styles/global.css`.
+- Pixelify Sans and Press Start 2P are bundled locally through Fontsource; no runtime Google Fonts request is required.
+- The landscape is an original inline SVG so day/night layers can blend without swapping unrelated images.
+- Browser local time controls wallpaper lighting and taskbar date/time; the optional URL time parameter only overrides wallpaper lighting.
+- Boot completion and icon positions are scoped to the current browser session using `sessionStorage`.
+- Desktop app labels and associated descriptions live in one app config; custom shortcut artwork is kept alongside the desktop icon component.
+- `useWindowManager` owns shared app-window state; each app has one reusable window that is restored and focused on repeated launch.
+- `src/config/photos.ts` owns gallery order and photo metadata; multiple entries may point to the same source in `public/assets/photos/` without duplicating the image.
+- Satwiscape tab histories and scroll positions are kept in the app session; Favorites and the recent-history panel use `satwiscape.bookmarks.v1` and `satwiscape.history.v1` in localStorage.
+- Satwiscape articles, publications, search rules, hidden pages, and initial favourites live in separate files under `src/config/satwiscape/`; article artwork is local SVG in `public/assets/satwiscape/`.
+- Supabase URL and public key are read from `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `src/config/supabase.ts`; there is no service-role key in frontend code.
+- Public Message to CD submissions use `src/services/messageService.ts`; owner authentication and inbox actions use `src/services/adminMessageService.ts`. The demo storage key is `satwika.message-to-cd.demo.v1` and is device-local only.
+- Owner message access is enforced by `supabase/migrations/20261113000000_create_message_inbox.sql`, not by the inbox route or client UI. The `private.message_owners` table contains the owner allowlist and stays inaccessible to browser roles.
+- `vercel.json` rewrites `/admin/messages` to the single-page app entry point. `SUPABASE_SETUP.md` documents the required project configuration before remote delivery is active.
+- Junny's birthday and identity data is split across `src/config/junny/birthdayDialogue.ts`, `birthdayGift.ts`, `profile.ts`, `announcements.ts`, and `photos.ts`; mascot art belongs in `public/assets/junny/`.
+- Junny HQ retains the existing app ID `teddy` so the current shortcut, Start Menu entry, and shared window behavior remain connected; its visible app name is now `Junny HQ`.
+- Junny HQ uses `useLocalTime.ts` for room lighting and the supplied portrait only; it preserves the source PNG bytes and the scrapbook has one entry because only one supplied portrait is available.

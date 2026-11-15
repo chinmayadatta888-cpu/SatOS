@@ -1,0 +1,254 @@
+.window-content.junny-window-content { min-height: 0; padding: 0; overflow: hidden; color: #4d4050; background: #f1e3c8; }
+.junny-hq-app { position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; container: junnyhq / inline-size; color: #514456; background: #f1e3c8; user-select: none; }
+.junny-scrapbook-view { min-width: 0; min-height: 0; height: 100%; flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden; color: #56485a; background: #f0e3ca; }
+.junny-scrapbook-header { min-height: 48px; flex: 0 0 auto; padding: 5px 8px; display: flex; align-items: center; gap: 9px; color: #fff8df; background: #715c70; border-bottom: 3px solid #4c3e53; }
+.junny-scrapbook-header > button { min-height: 28px; padding: 3px 7px; flex: 0 0 auto; color: #fff6de; background: #947181; border: 2px solid #4e4055; font-size: 10px; }
+.junny-scrapbook-header > div { min-width: 0; flex: 1 1 auto; }
+.junny-scrapbook-header > div > span { color: #e8d1bd; font-size: 7px; font-weight: 700; letter-spacing: .09em; }
+.junny-scrapbook-header h2 { margin: 1px 0 0; color: #fff7df; font-size: 15px; line-height: 1.1; }
+.junny-scrapbook-count { flex: 0 0 auto; color: #f2d98f; font-size: 9px; }
+.junny-scrapbook-paper { min-height: 0; flex: 1 1 auto; overflow: auto; padding: 12px clamp(9px, 3cqi, 24px); background-color: #fff7df; background-image: repeating-linear-gradient(0deg, transparent 0 26px, rgb(157 137 107 / 10%) 26px 27px); scrollbar-color: #b28b91 #eee0c2; }
+.junny-scrapbook-intro { margin: 0 0 9px; color: #82736d; font-size: 11px; }
+.junny-photo-wall { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 15px; }
+.junny-polaroid { position: relative; width: min(220px, 47%); min-width: 135px; padding: 8px 8px 9px; display: flex; flex-direction: column; align-items: stretch; gap: 4px; transform: rotate(-1.2deg); color: #514654; background: #fffdf1; border: 1px solid #c5b79b; box-shadow: 3px 4px 0 #ab977c; text-align: left; transition: transform .12s steps(2,end); }
+.junny-polaroid:nth-child(even) { transform: rotate(1.4deg); }
+.junny-polaroid:hover { z-index: 2; transform: translateY(-3px) rotate(0); box-shadow: 4px 6px 0 #a18d72; }
+.junny-polaroid:focus-visible { outline: 2px solid #815f7a; outline-offset: 3px; }
+.junny-washi-tape { position: absolute; z-index: 2; top: -6px; left: 37%; width: 28%; height: 13px; transform: rotate(-3deg); background: repeating-linear-gradient(90deg, #e89cac 0 5px, #f6c1bd 5px 9px); border-inline: 1px solid #ae7881; }
+.junny-polaroid-image { width: 100%; aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; background: #f0dfc8; border: 2px solid #655469; }
+.junny-polaroid-image img { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; }
+.junny-polaroid > strong { margin-top: 1px; color: #59495d; font-size: 13px; line-height: 1.2; }
+.junny-polaroid-caption { color: #a06375; font-size: 11px; font-weight: 700; }
+.junny-polaroid > small { color: #8e8174; font-size: 9px; }
+.junny-scrapbook-empty { padding: 15px; color: #786c69; background: #f3e9d2; border: 1px dashed #b6a387; font-size: 11px; }
+.junny-scrapbook-empty code { color: #76516b; }
+.junny-scrapbook-footer { margin-top: 15px; padding: 5px 2px; color: #a08d7c; border-top: 1px solid #d7c5a5; font-size: 8px; font-weight: 700; letter-spacing: .08em; }
+.junny-photo-viewer-backdrop { position: absolute; z-index: 20; inset: 0; padding: 10px; display: grid; place-items: center; background: rgb(37 39 54 / 76%); }
+.junny-photo-viewer { width: min(100%, 700px); height: min(100%, 620px); min-height: 0; padding: 5px; display: flex; flex-direction: column; overflow: hidden; color: #574a5a; background: #f4e8cc; border: 3px solid #635068; box-shadow: 5px 5px 0 #272839, inset 0 0 0 2px #fff8df; }
+.junny-photo-viewer > header { min-height: 35px; flex: 0 0 auto; padding: 3px 6px; display: flex; align-items: center; justify-content: space-between; color: #fff8df; background: #725d71; }
+.junny-photo-viewer > header > div > span { color: #e6d0b7; font-size: 7px; font-weight: 700; letter-spacing: .1em; }
+.junny-photo-viewer > header h3 { margin: 1px 0 0; font-size: 13px; line-height: 1.1; }
+.junny-photo-viewer-stage { min-height: 0; flex: 1 1 auto; padding: 7px; display: grid; grid-template-columns: 31px minmax(0, 1fr) 31px; align-items: center; gap: 6px; background: #d8d2c5; border: 2px solid #84758a; }
+.junny-photo-viewer-stage img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: contain; image-rendering: pixelated; }
+.junny-photo-viewer-stage > button { width: 29px; height: 32px; padding: 0; color: #fff7dd; background: #8d6d7e; border: 2px solid #554557; box-shadow: 1px 1px #b6a58b; font: 23px/20px var(--font-ui); }
+.junny-photo-viewer-stage > button:disabled { color: #ddd0c0; background: #a99c91; border-color: #877c74; box-shadow: none; }
+.junny-photo-viewer > p { margin: 6px 2px; color: #715c67; font-size: 11px; }
+.junny-photo-viewer > p small { display: block; margin-top: 2px; color: #8a7d72; font-size: 9px; }
+.junny-photo-viewer > footer { min-height: 19px; flex: 0 0 auto; padding: 3px 5px 0; display: flex; justify-content: space-between; color: #88766e; border-top: 1px solid #cbb99a; font-size: 8px; font-weight: 700; }
+
+
+/* Stage 7 birthday story redesign */
+.junny-hq-app { color: #514456; background: #f2e2c9; }
+.junny-topbar { min-height: 35px; flex: 0 0 auto; padding: 3px 10px; display: flex; align-items: center; gap: 12px; color: #fff5df; background: repeating-linear-gradient(90deg, #2764b2 0 18px, #2c6bbc 18px 26px); border: 2px solid #174d91; box-shadow: inset 1px 1px #80addd; }
+.junny-topbar-brand { display: flex; align-items: center; gap: 8px; font: 15px/1 var(--font-title); text-shadow: 1px 1px #173f78; }
+.junny-topbar-brand > span { color: #ffd477; font: 20px/1 var(--font-ui); }
+.junny-topbar-location { min-width: 0; overflow: hidden; color: #d9e6f7; font-size: 8px; font-weight: 700; letter-spacing: .07em; text-overflow: ellipsis; white-space: nowrap; }
+.junny-main-nav { min-height: 55px; flex: 0 0 auto; padding: 5px 9px; display: flex; align-items: center; justify-content: space-between; gap: 9px; color: #fff5e6; background: repeating-linear-gradient(0deg, #6c4b6d 0 18px, #725172 18px 24px); border-bottom: 4px solid #4a344e; box-shadow: inset 0 1px #bb8c9e; }
+.junny-nav-profile { min-width: 0; display: flex; align-items: center; gap: 8px; }
+.junny-nav-profile > span:first-child { width: 31px; height: 31px; flex: 0 0 auto; display: grid; place-items: center; color: #6d4260; background: #f7d787; border: 2px solid #49394f; box-shadow: 2px 2px #3c3048; font: 700 17px var(--font-title); }
+.junny-nav-profile > span:last-child { min-width: 0; display: flex; flex-direction: column; line-height: 1.15; }
+.junny-nav-profile strong { font: 10px var(--font-title); letter-spacing: .04em; }
+.junny-nav-profile small { margin-top: 2px; color: #ead6df; font-size: 7px; font-weight: 700; letter-spacing: .04em; }
+.junny-nav-tabs { min-width: 0; display: flex; justify-content: flex-end; gap: 5px; }
+.junny-nav-tabs button { min-height: 32px; padding: 4px 8px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: #fff5e4; background: #855b7d; border: 2px solid #4d3a53; box-shadow: inset 1px 1px #bc8aa2, 2px 2px #45364e; font-size: 10px; font-weight: 700; white-space: nowrap; }
+.junny-nav-tabs button > span { color: #f8dfa0; font-size: 15px; line-height: 1; }
+.junny-nav-tabs button:hover { background: #986b8c; }
+.junny-nav-tabs button.is-active { color: #584363; background: #ffe39a; border-color: #513d53; box-shadow: inset 1px 1px #fff2c0, 2px 2px #45364e; }
+.junny-nav-tabs button.is-active > span { color: #71436a; }
+.junny-app-main { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; overflow: auto; background: #eedcc4; }
+.junny-app-main > .junny-scrapbook-view { height: 100%; min-height: 0; flex: 1 0 auto; }
+.junny-home-view { min-width: 0; min-height: 270px; height: 100%; padding: 6px; display: grid; grid-template-rows: minmax(145px, 1fr) auto; gap: 7px; overflow: auto; }
+.birthday-room-scene { position: relative; min-width: 0; min-height: 145px; overflow: hidden; isolation: isolate; background: #be7770; border: 3px solid #594354; box-shadow: inset 0 0 0 2px #f8d4a6, 3px 3px #9c6b61; }
+.birthday-room-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.birthday-room-scene[data-light="day"] .birthday-window-sky { fill: #75bce0; }
+.birthday-room-scene[data-light="evening"] .birthday-window-sky { fill: #d79080; }
+.birthday-room-scene[data-light="night"] .birthday-window-sky { fill: #34476e; }
+.birthday-window-sun { fill: #ffe18b; }
+.birthday-window-moon, .birthday-window-stars { display: none; }
+.birthday-room-scene[data-light="night"] .birthday-window-moon, .birthday-room-scene[data-light="night"] .birthday-window-stars { display: initial; }
+.birthday-room-scene[data-light="night"] .birthday-window-sun { display: none; }
+.birthday-room-scene[data-light="evening"] .birthday-window-sun { fill: #ffc179; }
+.birthday-room-scene[data-light="night"] .birthday-room-art > rect:first-child { fill: #9e7580; }
+.birthday-room-scene[data-cake-lit="yes"]::after { content: ''; position: absolute; z-index: 3; left: 35%; bottom: 2%; width: 30%; height: 60%; background: repeating-linear-gradient(0deg, rgb(255 215 117 / 10%) 0 7px, transparent 7px 14px); clip-path: polygon(34% 0,66% 0,100% 100%,0 100%); pointer-events: none; }
+.birthday-scene-banner { position: absolute; z-index: 1; top: 3%; left: 50%; padding: 3px 7px; transform: translateX(-50%); color: #fff0ca; background: #754652; border: 2px solid #493747; box-shadow: 2px 2px #553c4c; font: 7px var(--font-title); letter-spacing: .04em; white-space: nowrap; }
+.birthday-scene-banner span { color: #f7cd72; }
+.birthday-game-keepsake { position: absolute; z-index: 2; left: 82%; top: 6%; width: 13%; max-width: 120px; min-width: 62px; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff0ca; background: #744852; border: 2px solid #493747; box-shadow: 2px 2px #593b4a; transform: rotate(1deg); }
+.birthday-game-icon { color: #f3ce75; font: 17px/1 var(--font-title); }
+.birthday-game-keepsake small { font-size: clamp(5px, .75cqi, 8px); font-weight: 700; white-space: nowrap; }
+.birthday-framed-portrait { position: absolute; z-index: 2; left: 6%; bottom: 19%; width: 12%; max-width: 94px; aspect-ratio: 1; padding: 4px; display: grid; place-items: center; background: #f4dcae; border: 3px solid #584351; box-shadow: 2px 2px #674853; }
+.birthday-framed-portrait img { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; }
+.birthday-junny { position: absolute; z-index: 4; left: 74%; bottom: 17%; width: auto; height: min(72%, 245px); aspect-ratio: 1273 / 1236; transform: translateX(-50%); }
+.birthday-junny-portrait { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; overflow: visible; background: transparent; border: 0; }
+.birthday-junny-portrait img { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; }
+.birthday-junny-welcoming .birthday-junny-portrait img { transform: translateY(-2px); }
+.birthday-junny-thoughtful .birthday-junny-portrait img { transform: rotate(-1deg); }
+.birthday-junny-proud .birthday-junny-portrait img { filter: drop-shadow(1px 1px 0 #f0c86e); }
+.birthday-junny-encouraging .birthday-junny-portrait img { transform: rotate(1deg); }
+.birthday-junny-gentle .birthday-junny-portrait img { filter: saturate(.92); }
+.birthday-junny-playful .birthday-junny-portrait img { transform: rotate(1deg) translateY(-1px); }
+.birthday-junny-anticipation .birthday-junny-portrait img { transform: translateY(-2px); }
+.birthday-junny-affectionate .birthday-junny-portrait img { filter: brightness(1.025) saturate(.94); }
+.birthday-junny-portrait:not(:disabled):hover img { filter: brightness(1.04); }
+.birthday-junny-portrait:disabled { cursor: default; }
+.birthday-junny-nose { position: absolute; z-index: 2; left: 48%; top: 35%; width: 13%; height: 10%; padding: 0; background: transparent; border: 2px solid transparent; }
+.birthday-junny-nose:not(:disabled):hover { background: rgb(255 231 179 / 18%); border-color: #fff0c6; }
+.birthday-junny-thought { position: absolute; z-index: 6; right: 3%; top: 10%; min-width: 32px; min-height: 24px; padding: 1px 3px; display: grid; place-items: center; color: #684462; background: #fff1d2; border: 2px solid #67485d; box-shadow: 2px 2px #a56f79; font-size: 10px; pointer-events: none; }
+.birthday-junny-thought b { position: absolute; bottom: -7px; left: 5px; width: 5px; height: 5px; background: #fff1d2; border: 1px solid #67485d; }
+.birthday-junny-thought b:last-child { bottom: -12px; left: 1px; width: 3px; height: 3px; }
+.birthday-junny-mood-marks { position: absolute; z-index: 6; inset: 1% -1% auto; display: flex; align-items: flex-start; justify-content: space-between; pointer-events: none; }
+.birthday-junny-mood-marks i { color: #f3cf72; font: normal 15px/1 var(--font-title); text-shadow: 1px 1px #754963; animation: birthday-pop .32s steps(2,end) both; }
+.mood-welcoming i:nth-child(2), .mood-affectionate i:nth-child(2) { margin-top: 10px; color: #e95184; }
+.mood-thoughtful { display: none; }
+.mood-proud i:first-child { color: #ffe18b; font-size: 18px; }
+.mood-encouraging i:last-child { color: #fff0ce; font: 20px/12px var(--font-ui); }
+.mood-gentle, .mood-affectionate { justify-content: center; gap: 24px; color: #d64e7b; }
+.mood-gentle i, .mood-affectionate i { color: #d64e7b; }
+.mood-playful i { color: #e47ea0; }
+.mood-anticipation i:nth-child(2) { margin-top: -4px; color: #fff0c6; }
+.birthday-junny-sparkles { position: absolute; z-index: 4; inset: 6% -4% auto; display: flex; justify-content: space-between; color: #f7d66f; text-shadow: 1px 1px #804b70; pointer-events: none; }
+.birthday-junny-sparkles i { font-style: normal; animation: birthday-pop .6s steps(3,end) both; }.birthday-junny-sparkles i:nth-child(2) { color: #e75283; animation-delay: 100ms; }
+.birthday-junny.is-celebrating img { animation: birthday-cheer .45s steps(3,end) 2; }
+.birthday-table-front { position: absolute; inset: 0; z-index: 5; width: 100%; height: 100%; pointer-events: none; }
+.birthday-room-scene > .birthday-cake { position: absolute; z-index: 6; left: 38%; bottom: 38.5%; width: auto; height: min(47%, 224px); aspect-ratio: 260 / 210; }
+.birthday-cake > svg { width: 100%; height: 100%; display: block; overflow: visible; filter: drop-shadow(2px 3px 0 #754d59); }
+.birthday-cake-action { position: absolute; left: 19%; top: 12%; width: 62%; height: 39%; padding: 0; background: transparent; border: 2px solid transparent; }
+.birthday-cake-action:hover { background: rgb(255 246 213 / 10%); border-color: rgb(255 245 202 / 78%); }
+.birthday-cake-action:disabled { cursor: wait; }
+.birthday-cake-action:focus-visible { outline: 2px dashed #fff1b8; outline-offset: 2px; }
+.birthday-cake-flames path { transform-box: fill-box; transform-origin: center bottom; animation: birthday-flame .4s steps(2,end) infinite alternate; }
+.birthday-cake-smoke { animation: birthday-smoke 1.2s steps(3,end) both; }
+.birthday-cake-slice { animation: birthday-slice .3s steps(3,end) both; }
+.birthday-present { position: absolute; z-index: 7; left: 81%; bottom: 8%; width: min(14%, 130px); min-width: 62px; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff3d7; background: transparent; border: 0; }
+.birthday-present svg { width: 100%; height: auto; filter: drop-shadow(2px 2px 0 #694556); }
+.birthday-present span { padding: 2px 4px; color: #69415f; background: #fff0cf; border: 1px solid #624655; font-size: clamp(6px, .7cqi, 8px); font-weight: 700; }
+.birthday-present:hover { transform: translateY(-3px); }
+.birthday-confetti { position: absolute; z-index: 8; inset: 0; overflow: hidden; pointer-events: none; }
+.birthday-confetti i { position: absolute; top: -8px; left: var(--confetti-x); width: 7px; height: 8px; background: var(--confetti-color); border: 1px solid #5d3c55; animation: birthday-confetti-fall 1.3s steps(8,end) var(--confetti-delay) both; }
+.birthday-room-signature { position: absolute; right: 6px; bottom: 4px; z-index: 2; padding: 2px 4px; color: #fff0c9; background: #74504e; border: 1px solid #543d4b; font-size: 6px; font-weight: 700; letter-spacing: .06em; }
+.birthday-dialogue-panel { position: relative; z-index: 1; min-width: 0; min-height: 94px; padding: 8px; display: grid; grid-template-columns: 62px minmax(0,1fr) auto; align-items: center; gap: 9px; color: #554052; background: #fff0ce; border: 3px solid #66485d; box-shadow: inset 0 0 0 2px #fff9e4, 3px 3px #b4847a; }
+.birthday-dialogue-welcoming { --story-accent: #d94a75; }
+.birthday-dialogue-thoughtful { --story-accent: #8f6388; }
+.birthday-dialogue-proud { --story-accent: #aa7937; }
+.birthday-dialogue-encouraging { --story-accent: #538173; }
+.birthday-dialogue-gentle { --story-accent: #b56b8c; }
+.birthday-dialogue-celebrating { --story-accent: #d94a75; }
+.birthday-dialogue-playful { --story-accent: #c16d68; }
+.birthday-dialogue-anticipation { --story-accent: #a16d83; }
+.birthday-dialogue-affectionate { --story-accent: #c84770; }
+.birthday-dialogue-panel { border-inline-start: 8px solid var(--story-accent, #a16d83); }
+.birthday-dialogue-portrait { width: 58px; height: 58px; display: grid; place-items: center; overflow: hidden; background: #f4d9c8; border: 2px solid #795367; box-shadow: 2px 2px #d3a2a0; }
+.birthday-dialogue-portrait img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.birthday-dialogue-copy { min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; user-select: text; }
+.birthday-dialogue-heading { display: flex; align-items: baseline; gap: 7px; }
+.birthday-dialogue-heading strong { color: var(--story-accent, #c43d62); font: 12px var(--font-title); }
+.birthday-dialogue-heading strong span { color: #dd4a76; }
+.birthday-dialogue-heading small { color: #a27980; font-size: 6px; font-weight: 700; letter-spacing: .06em; }
+.birthday-dialogue-copy > p { margin: 4px 0 0; color: #4c3d5e; font-size: clamp(10px, 1.3cqi, 14px); font-weight: 700; line-height: 1.3; }
+.birthday-dialogue-copy > p:first-letter { color: inherit; }
+.birthday-hidden-message { margin: 5px 0 0; padding: 4px 6px; color: #704263; background: #ffe2a2; border-left: 3px solid #ce7892; font-size: clamp(8px, 1cqi, 11px); font-weight: 700; line-height: 1.25; }
+.birthday-dialogue-actions { min-width: 100px; align-self: stretch; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 5px; }
+.birthday-story-progress { color: #a3757b; font-size: 8px; font-weight: 700; }
+.birthday-story-progress i { padding: 0 2px; color: #cb9c88; font-style: normal; }
+.birthday-dialogue-actions button { min-width: 100px; min-height: 32px; padding: 4px 7px; display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; color: #fff6df; background: #8d5d7a; border: 2px solid #533d59; box-shadow: inset 1px 1px #c38ba1, 2px 2px #72505d; font-size: 9px; font-weight: 700; }
+.birthday-dialogue-actions button:hover:not(:disabled) { background: #a36c87; }
+.birthday-dialogue-actions button:disabled { color: #e5d5d4; background: #aa8e9c; border-color: #6e5a6d; box-shadow: none; cursor: wait; }
+.birthday-dialogue-actions button > span { color: #ffe28d; font-size: 19px; line-height: 14px; }
+.birthday-dialogue-actions .birthday-replay-button { color: #59415b; background: #f5d989; border-color: #675051; box-shadow: inset 1px 1px #fff0b1, 2px 2px #87615d; }
+.birthday-replay-button:hover { background: #ffeba8 !important; }
+.birthday-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.junny-statusbar { min-height: 27px; flex: 0 0 auto; padding: 3px 10px; display: flex; align-items: center; justify-content: space-between; gap: 7px; color: #62465c; background: #f5e8cf; border-top: 2px solid #bd9783; box-shadow: inset 0 1px #fff8e8; font-size: 9px; font-weight: 700; }
+.junny-statusbar b { color: #d74e7a; font-size: 13px; }
+.junny-profile-page { width: min(100%, 760px); min-height: 100%; margin: 0 auto; padding: 16px clamp(12px, 3cqi, 28px) 22px; overflow: auto; color: #554655; background: #fff4db; border-inline: 2px solid #d5bd99; user-select: text; }
+.junny-profile-page > header { padding: 3px 0 10px; border-bottom: 2px solid #d5c09f; }
+.junny-profile-page > header > span { color: #a5687e; font-size: 8px; font-weight: 700; letter-spacing: .12em; }
+.junny-profile-page > header h2 { margin: 4px 0 2px; color: #65465f; font: 17px/1.15 var(--font-title); }
+.junny-profile-page > header p { margin: 3px 0 0; color: #857274; font-size: 11px; }
+.junny-profile-page-card { margin: 12px 0; padding: 10px; display: flex; align-items: center; gap: 12px; background: #f7e6c9; border: 2px solid #b99485; box-shadow: 2px 2px #d8b49b; }
+.junny-profile-page-portrait { width: 98px; height: 98px; flex: 0 0 auto; display: grid; place-items: center; background: #fff8e4; border: 3px solid #71536a; }
+.junny-profile-page-portrait img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.junny-profile-page-identity { min-width: 0; }
+.junny-profile-page-identity h3 { margin: 0; color: #674b68; font: 16px var(--font-title); }
+.junny-profile-seal { display: inline-block; margin-top: 5px; padding: 3px 5px; color: #4c755b; background: #e3ecd9; border: 1px solid #9caf91; font-size: 9px; font-weight: 700; }
+.junny-profile-page-identity > strong { display: block; margin-top: 5px; color: #94727b; font-size: 8px; letter-spacing: .08em; }
+.junny-profile-page-identity > strong b { margin-left: 4px; color: #57465a; font-size: 11px; }
+.junny-profile-page-identity p { margin: 5px 0 0; color: #766470; font-size: 10px; }
+.junny-profile-page-details { margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid #cbb291; border-left: 1px solid #cbb291; }
+.junny-profile-page-details > div { min-width: 0; padding: 7px; background: #fffaf0; border-right: 1px solid #cbb291; border-bottom: 1px solid #cbb291; }
+.junny-profile-page-details dt { color: #9b7180; font-size: 8px; font-weight: 700; }
+.junny-profile-page-details dd { margin: 3px 0 0; color: #574a57; font-size: 11px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
+.junny-profile-page > footer { margin-top: 9px; padding: 7px; display: flex; justify-content: space-between; gap: 5px; color: #84736d; background: #ead9bd; font-size: 7px; font-weight: 700; letter-spacing: .04em; }
+.birthday-gift-backdrop { position: absolute; z-index: 30; inset: 0; padding: 12px; display: grid; place-items: center; overflow: auto; background: rgb(48 37 55 / 76%); }
+.birthday-gift-letter { width: min(100%, 580px); max-height: 100%; padding: 6px; display: flex; flex-direction: column; overflow: auto; color: #57465a; background: #f3e4c7; border: 3px solid #5c435a; box-shadow: 5px 5px #30283b, inset 0 0 0 2px #fff7df; animation: birthday-letter-open .24s steps(3,end) both; }
+.birthday-gift-letter > header { min-height: 48px; flex: 0 0 auto; padding: 4px 7px; display: flex; align-items: center; gap: 8px; color: #fff5de; background: #76536d; }
+.birthday-gift-letter > header > span { color: #f3d275; font-size: 21px; }
+.birthday-gift-letter > header > div { min-width: 0; flex: 1; }
+.birthday-gift-letter > header small { color: #ead1cf; font-size: 7px; font-weight: 700; letter-spacing: .09em; }
+.birthday-gift-letter > header h2 { margin: 2px 0 0; font: 13px var(--font-title); }
+.birthday-gift-letter > header button { width: 25px; height: 24px; color: #fff8e7; background: #b95e76; border: 2px solid #4c3a52; font: 19px/16px var(--font-ui); }
+.birthday-letter-paper { position: relative; min-height: 0; margin: 7px 0; padding: 13px clamp(12px, 3vw, 23px); overflow: auto; background-color: #fff7df; background-image: repeating-linear-gradient(0deg, transparent 0 25px, rgb(150 130 106 / 12%) 25px 26px); border: 1px solid #cbb694; user-select: text; }
+.birthday-letter-paper pre { margin: 0; color: #59485e; font: 12px/1.7 var(--font-ui); white-space: pre-wrap; }
+.birthday-letter-stamp { position: absolute; right: 17px; bottom: 12px; color: #d06a86; font-size: 25px; }
+.birthday-gift-letter > footer { flex: 0 0 auto; padding: 4px 2px 1px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.birthday-gift-letter > footer button { min-height: 29px; padding: 4px 8px; color: #fff6df; background: #8b617b; border: 2px solid #523e58; font-size: 9px; font-weight: 700; }
+.birthday-gift-letter > footer button:last-child { color: #5b435d; background: #f1d986; }
+.birthday-gift-letter > footer button:hover { filter: brightness(1.08); }
+.junny-hq-app button:focus-visible { outline: 2px solid #ffe68f; outline-offset: 2px; }
+@keyframes birthday-think { to { transform: translateY(-3px); } }
+@keyframes birthday-pop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes birthday-cheer { 50% { transform: translateY(-4px); } }
+@keyframes birthday-flame { to { transform: scaleY(.78) translateY(1px); } }
+@keyframes birthday-smoke { to { opacity: .25; transform: translateY(-7px); } }
+@keyframes birthday-slice { from { transform: translateX(-7px); } }
+@keyframes birthday-confetti-fall { to { transform: translateY(115%) rotate(180deg); opacity: .6; } }
+@keyframes birthday-letter-open { from { transform: scale(.96); opacity: .75; } to { transform: scale(1); opacity: 1; } }
+@container junnyhq (max-width: 650px) {
+  .junny-home-view { min-height: 250px; grid-template-rows: minmax(132px, 1fr) auto; }
+  .birthday-room-scene { min-height: 132px; }
+  .junny-main-nav { min-height: 46px; padding: 4px 5px; gap: 4px; }
+  .junny-nav-profile > span:first-child { width: 26px; height: 26px; font-size: 14px; }
+  .junny-nav-profile strong { font-size: 8px; }.junny-nav-profile small { display: none; }
+  .junny-nav-tabs { flex: 1; gap: 3px; }
+  .junny-nav-tabs button { min-height: 30px; flex: 1; padding: 3px 4px; gap: 4px; font-size: 8px; }
+  .junny-nav-tabs button > span { font-size: 12px; }
+  .birthday-scene-banner { font-size: 6px; }
+  .birthday-game-keepsake { display: none; }
+  .birthday-dialogue-panel { min-height: 86px; grid-template-columns: 48px minmax(0,1fr) auto; gap: 6px; padding: 6px; }
+  .birthday-dialogue-portrait { width: 46px; height: 46px; }
+  .birthday-dialogue-actions { min-width: 84px; }
+  .birthday-dialogue-actions button { min-width: 82px; min-height: 29px; padding-inline: 5px; font-size: 8px; }
+  .birthday-dialogue-copy > p { font-size: 10px; }
+  .birthday-dialogue-heading small { display: none; }
+}
+@container junnyhq (max-width: 1000px) {
+  .birthday-junny { left: 78%; }
+}
+@container junnyhq (max-width: 430px) {
+  .junny-topbar { min-height: 31px; padding-inline: 6px; }
+  .junny-topbar-brand { font-size: 12px; }.junny-topbar-location { font-size: 6px; }
+  .junny-nav-profile { display: none; }
+  .junny-nav-tabs { justify-content: space-between; }
+  .junny-nav-tabs button { flex-direction: column; gap: 1px; min-height: 35px; padding: 2px; font-size: 7px; }
+  .junny-nav-tabs button > span { font-size: 13px; }
+  .junny-home-view { min-height: 255px; padding: 4px; grid-template-rows: minmax(140px, 1fr) auto; gap: 5px; }
+  .birthday-room-scene { min-height: 140px; }
+  .birthday-scene-banner { top: 2%; max-width: 70%; overflow: hidden; font-size: 5px; }
+  .birthday-game-keepsake { display: none; }
+  .birthday-framed-portrait { left: 4%; width: 12%; padding: 2px; }
+  .birthday-present { left: 80%; width: 14%; min-width: 50px; }
+  .birthday-dialogue-panel { min-height: 100px; grid-template-columns: 39px minmax(0,1fr); grid-template-rows: 1fr auto; align-items: start; gap: 4px 6px; }
+  .birthday-dialogue-portrait { width: 38px; height: 38px; }
+  .birthday-dialogue-copy { grid-column: 2; }
+  .birthday-dialogue-heading strong { font-size: 10px; }
+  .birthday-dialogue-copy > p { margin-top: 2px; font-size: 9px; }
+  .birthday-hidden-message { font-size: 8px; }
+  .birthday-dialogue-actions { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+  .birthday-dialogue-actions button { min-height: 26px; }
+  .junny-statusbar { font-size: 7px; padding-inline: 5px; }
+  .junny-statusbar span:nth-child(2) { display: none; }
+  .junny-profile-page-details { grid-template-columns: 1fr; }
+  .junny-profile-page > footer { flex-direction: column; }
+  .birthday-gift-letter > footer { justify-content: stretch; }.birthday-gift-letter > footer button { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .birthday-junny-mood-marks i, .birthday-junny-thought, .birthday-junny-sparkles i, .birthday-junny.is-celebrating img, .birthday-cake-flames path, .birthday-cake-smoke, .birthday-cake-slice, .birthday-gift-letter { animation: none; transition: none; }
+}
