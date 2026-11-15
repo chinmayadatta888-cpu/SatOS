@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { defaultSatwiscapeBookmarks, type SatwiscapeBookmark } from '../../config/satwiscape/bookmarks'
 import { satwiscapeSearchStorage } from '../../config/satwiscape/searchConfig'
-import { createHomeTab, createVisit, resolveAddress, searchPage, type BrowserPage, type BrowserTab, type BrowserVisit } from './browserModel'
+import { createHomeTab, createVisit, getArticle, getPublication, resolveAddress, searchPage, type BrowserPage, type BrowserTab, type BrowserVisit } from './browserModel'
 import SatwiscapePageView from './SatwiscapePages'
 
 type SavedHistory = { id: string; title: string; url: string; visitedAt: number }
@@ -14,6 +14,28 @@ function readStored<T>(key: string, fallback: T): T {
     const parsed: unknown = JSON.parse(value)
     return Array.isArray(parsed) ? parsed as T : fallback
   } catch { return fallback }
+}
+
+function readCurrentBookmarks(): SatwiscapeBookmark[] {
+  const stored = readStored<SatwiscapeBookmark[]>(satwiscapeSearchStorage.bookmarks, defaultSatwiscapeBookmarks)
+  let removedStaleBookmark = false
+  const current = stored.flatMap((bookmark) => {
+      if (!bookmark || typeof bookmark.id !== 'string' || typeof bookmark.title !== 'string' || typeof bookmark.url !== 'string') return []
+      const page = resolveAddress(bookmark.url, 0)
+      if (page.kind === 'not-found') { removedStaleBookmark = true; return [] }
+      if (page.kind === 'publication') {
+        const publication = getPublication(page.publicationId)
+        return publication ? [{ ...bookmark, title: publication.name }] : []
+      }
+      if (page.kind === 'article') {
+        const article = getArticle(page.articleId)
+        return article ? [{ ...bookmark, title: article.headline }] : []
+      }
+      return [bookmark]
+    })
+  if (!removedStaleBookmark) return current
+  const savedUrls = new Set(current.map((bookmark) => bookmark.url))
+  return [...current, ...defaultSatwiscapeBookmarks.filter((bookmark) => !savedUrls.has(bookmark.url))]
 }
 
 function ClockMark({ kind }: { kind: 'back' | 'forward' | 'refresh' | 'home' | 'bookmark' | 'menu' }) {
@@ -78,7 +100,7 @@ export default function SatwiscapeApp() {
   const [activeTabId, setActiveTabId] = useState('tab-1')
   const [addressDraft, setAddressDraft] = useState('satwiscape://home')
   const [panel, setPanel] = useState<BrowserPanel>(null)
-  const [bookmarks, setBookmarks] = useState<SatwiscapeBookmark[]>(() => readStored(satwiscapeSearchStorage.bookmarks, defaultSatwiscapeBookmarks))
+  const [bookmarks, setBookmarks] = useState<SatwiscapeBookmark[]>(readCurrentBookmarks)
   const [historyEntries, setHistoryEntries] = useState<SavedHistory[]>(() => readStored<SavedHistory[]>(satwiscapeSearchStorage.history, []))
 
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0]

@@ -15,6 +15,7 @@ export type SatwiscapeArticle = {
   headline: string
   subtitle: string
   author: string
+  byline: string
   publicationDate: string
   thumbnailPath: string
   mainImagePath: string

@@ -24,6 +24,8 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 **Stage 8 — Settings application: complete.**
 
+**Final content replacement — Note For You and Satwiscape: complete.**
+
 ## Completed features
 
 - React, TypeScript, and Vite project foundation with modular components.
@@ -42,7 +44,7 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Note For You with an animated sealed envelope, a configurable read-only letter, and a notepad-style view.
 - Achievements with 10 configurable entries, custom pixel badge artwork, a derived unlocked count, scrolling, and a detail panel.
 - Recycle Bin with fictional keepsakes, rotating non-destructive empty-bin notices, and icon-drop protection that restores desktop shortcuts and shows a toast.
-- Satwiscape with controlled internal routes, independent tabs and back/forward histories, scroll restoration, address/search navigation, five fictional publications and articles, configurable hidden pages, and a rotating custom 404.
+- Satwiscape with controlled internal routes, independent tabs and back/forward histories, scroll restoration, address/search navigation, four fictional publications and final articles, configurable hidden pages, and a rotating custom 404.
 - SatwiSearch homepage with trending searches and local article links; Favorites and recent history panels persist on this device.
 - Message to CD with a 2,000-character multiline editor, validation, local demo persistence, explicit demo/remote labels, confirmed-save success, and retryable failure that preserves the draft.
 - Supabase message storage with a typed client, public insert-only privileges, RLS-protected owner operations, password sign-in, and a private owner allowlist.
@@ -60,6 +62,9 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Junny Management with saved CEO authority, virtual hugs, nap and Recycle Bin protection preferences, cuteness calibration, and the Employee of the Month panel. Recycle Bin protection stays fictional and non-destructive.
 - Short local diagnostics and update sequences, version-click developer easter egg, optional humorous notices, and seriousness calibration. Potato Mode, Main Character Mode, and cuteness values are playful preferences; Dramatic Startup is clearly marked as a saved preference with no startup effect in this edition.
 - A confirmed Settings-only reset that leaves photos, messages, scrapbook entries, achievements, and other app content untouched.
+- Note For You now contains the supplied final letter in `src/config/noteContent.ts`; the envelope interaction, read-only notepad styling, and scrolling letter view are unchanged.
+- Satwiscape now contains exactly four supplied articles across The Daily Satwi, Satwi Science Journal, The Satwi Times, and The Satwika Chronicle. The homepage, article pages, related links, search, and default Favorites use only those articles and publications.
+- Stale saved Satwiscape Favorites that resolve to removed pages are filtered during load; current valid favorites are preserved, new defaults are added when stale entries are removed, and publication titles are refreshed.
 - Bundled Pixelify Sans and Press Start 2P fonts for local, consistent pixel-inspired type.
 - Refined landscape contours with hand-placed grass and flower clusters, textured hill shading, and a smaller cratered moon.
 - Rebuilt the taskbar, Start button, tray symbols, calendar controls, and popups with hard-edged pixel surfaces.
@@ -78,9 +83,9 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Confirmed by source inspection that the Recycle Bin only reads its mock configuration and changes in-app message state; it performs no filesystem operations.
 - Browser interaction checks for Stage 4 could not be completed because the computer-use bridge failed to initialize (`failed to write kernel assets: The system cannot find the path specified`).
 - Built Stage 5 successfully with `npm run build`.
-- Confirmed Satwiscape content and five article illustrations are local and that the browser code uses only controlled `satwiscape://` routes; it contains no embedded browser, external fetch, or dynamic HTML execution.
+- Confirmed Satwiscape content and four article illustrations are local and that the browser code uses only controlled `satwiscape://` routes; it contains no embedded browser, external fetch, or dynamic HTML execution.
 - Exercised the route/search model through Vite's local module loader: birthday and cute searches matched their stories, an unrelated query returned the custom 404, publication/article/secret routes resolved, and an external URL resolved only to the internal 404.
-- Confirmed the homepage and all five local article illustrations returned HTTP 200 from the Vite development server.
+- Confirmed the homepage and all four local article illustrations returned HTTP 200 from the Vite development server.
 - Browser interaction checks for Stage 5 could not be completed because the computer-use bridge again failed to initialize (`failed to write kernel assets: The system cannot find the path specified`).
 - Built Stage 6 successfully with `npm run build`.
 - Exercised the message service through Vite's module loader: verified demo-mode selection, blank and over-limit rejection, surrounding whitespace trimming, paragraph preservation, local persistence, and a storage failure without success.
@@ -99,6 +104,10 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Ran 44 browser interaction checks: Settings launch from desktop and Start Menu; wallpaper, display, sound, personalization, Junny, and experimental controls; diagnostics, local update check and version easter egg; reset keyboard flow and reload persistence. All checks passed, with no uncaught browser exceptions.
 - Verified hidden desktop shortcuts leave all eight applications available in the Start Menu; opened Photos, Note For You, Achievements, Recycle Bin, Satwiscape, Message to CD, and Junny HQ through the shared window manager. Recycle Bin reflected Junny's protection setting and remained non-destructive.
 - Maximized Settings at 900 × 650, 1200 × 750, and 1582 × 804. The window fit the available desktop area, category navigation remained usable, and the main panel had no horizontal overflow.
+- Compared the rendered Note For You message with the supplied wording, opened the envelope, and checked that the full letter including paragraph breaks, emojis, and sign-off is readable through the existing scroll area.
+- Opened all four Satwiscape articles through the homepage and direct controlled routes; verified headlines, publication names, authors, bylines, and exact article bodies. The Deepak note retains its line breaks.
+- Searched for Junny, Satwika, Deepak, and Dishen and confirmed relevant new stories appear. Checked the four-item homepage, all related article IDs, and the stale-Favorites migration; old sample stories and publication links are absent.
+- Ran 34 content/browser checks and the production build successfully. The browser console reported no errors; all four article bodies and the complete letter matched the supplied text exactly.
 - Built Stage 2 successfully with `npm run build`.
 - Manually checked marquee and additive selection, group dragging, shortcut double-click and Enter launch, Delete to Recycle Bin, Escape clearing, window drag/resize/maximize/restore/minimize/close, taskbar switching and toggles, and Alt+F4.
 - Confirmed the custom cursor rules resolve to the corresponding SVGs and the browser console has no errors.

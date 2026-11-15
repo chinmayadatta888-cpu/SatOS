@@ -1,10 +1,9 @@
 /** Homepage suggestions and custom no-results copy are easy to replace here. */
 export const trendingSearches = [
-  'Why is Satwika so cute?',
-  'Satwika birthday news',
-  'How to become Satwika',
-  'Is Satwika secretly famous?',
-  "Things Satwika doesn't know about herself",
+  'Junny Satwika OS',
+  'blood volume clotting',
+  'Deepak Satwika',
+  'Dishen new policies',
 ]
 
 export const notFoundMessages = [

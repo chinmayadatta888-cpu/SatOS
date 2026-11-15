@@ -98,7 +98,7 @@ function PublicationPage({ publicationId, onArticle }: { publicationId: string; 
       <div className="sw-pub-section-label"><span>LATEST EDITION</span><i /><span>ALL STORIES ARE FICTIONAL</span></div>
       {articles.map((article) => <button className="sw-publication-story" key={article.id} type="button" style={{ '--publication-accent': publication.accent } as CSSProperties} onClick={() => onArticle(article.id)}>
         <img src={article.thumbnailPath} alt="" loading="lazy" />
-        <span><small>{article.publicationDate} · {article.author}</small><strong>{article.headline}</strong><em>{article.subtitle}</em><b>Continue reading →</b></span>
+        <span><small>By {article.author} · {article.byline}</small><strong>{article.headline}</strong>{article.subtitle && <em>{article.subtitle}</em>}<b>Continue reading →</b></span>
       </button>)}
       {articles.length === 0 && <p className="sw-empty-publication">This publication is preparing its first edition.</p>}
       <footer className="sw-site-footer"><span>{publication.name.toUpperCase()}</span><span>INDEPENDENTLY IMAGINARY SINCE TODAY</span></footer>
@@ -118,12 +118,12 @@ function ArticlePage({ articleId, onArticle, onPublication, onHome }: { articleI
         <div className="sw-article-content">
           <span className="sw-fiction-label">FICTIONAL NEWS • FOR FUN</span>
           <h1>{article.headline}</h1>
-          <p className="sw-article-subtitle">{article.subtitle}</p>
-          <div className="sw-article-byline"><span>By <strong>{article.author}</strong></span><time>{article.publicationDate}</time></div>
+          {article.subtitle && <p className="sw-article-subtitle">{article.subtitle}</p>}
+          <div className="sw-article-byline"><span>By <strong>{article.author}</strong><small>{article.byline}</small></span>{article.publicationDate && <time>{article.publicationDate}</time>}</div>
           <figure className="sw-article-figure"><img src={article.mainImagePath} alt="Pixel-art illustration for this fictional article" /><figcaption>A tiny illustration from the {publication.name} art desk.</figcaption></figure>
           <p className="sw-article-lede">{article.summary}</p>
           <div className="sw-article-body">{article.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
-          <div className="sw-fiction-notice"><strong>THE SATWISCAPE FICTION DESK</strong><span>This is a playful fictional story. It is not real news, research, or reporting.</span></div>
+          <div className="sw-fiction-notice"><strong>THE SATWISCAPE FICTION DESK</strong><span>This is a playful fictional story. It is not real news, research, reporting, or medical advice.</span></div>
         </div>
       </article>
       <section className="sw-related-stories"><div className="sw-section-title"><span className="sw-section-star" aria-hidden="true">✦</span><h2>RELATED STORIES</h2><span className="sw-section-rule" /></div>

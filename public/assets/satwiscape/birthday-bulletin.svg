@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 210" shape-rendering="crispEdges">
-  <rect width="360" height="210" fill="#f5d8d3"/><rect x="18" y="17" width="324" height="176" fill="#fff4dc" stroke="#71465d" stroke-width="8"/>
-  <rect x="35" y="33" width="290" height="24" fill="#cc6c88"/><rect x="53" y="42" width="176" height="7" fill="#fff2db"/><rect x="280" y="40" width="27" height="12" fill="#f3cd6b"/>
-  <path d="M95 132h170v32H95z" fill="#ef9b9d" stroke="#694858" stroke-width="5"/><path d="M112 108h136v25H112z" fill="#ffe39a" stroke="#694858" stroke-width="5"/><path d="M124 91h10v18h-10zm36-10h10v26h-10zm39 10h10v18h-10zm35-8h10v26h-10z" fill="#79b5a6" stroke="#694858" stroke-width="3"/>
-  <path d="M125 77v-15l5-8 5 8v15m34-5V57l5-8 5 8v15m34 5V62l5-8 5 8v15" fill="#f0a55f" stroke="#694858" stroke-width="3"/><rect x="129" y="56" width="4" height="5" fill="#fff4c8"/><rect x="168" y="47" width="4" height="5" fill="#fff4c8"/><rect x="207" y="52" width="4" height="5" fill="#fff4c8"/>
-  <path d="M60 73h12v12H60zm224 13h12v12h-12zM69 152h12v12H69zm213-70h12v12h-12z" fill="#78a9c0"/><path d="M69 123h8v8h-8zm220 30h8v8h-8z" fill="#e4b34c"/>
-</svg>

@@ -77,7 +77,7 @@ export function searchArticles(query: string): SatwiscapeArticle[] {
   return satwiscapeArticles.filter((article) => {
     const publication = getPublication(article.publicationId)
     const content = normalizeQuery([
-      article.headline, article.subtitle, article.summary, article.author, article.publicationDate,
+      article.headline, article.subtitle, article.summary, article.author, article.byline, article.publicationDate,
       ...article.paragraphs, ...article.keywords, publication?.name ?? '',
     ].join(' '))
     const matched = terms.map((term) => content.includes(term))
