@@ -1,8 +1,50 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
-import { supabaseConfigState } from '../../config/supabase'
-import { getMessageStorageMode, submitMessage, type MessageReceipt } from '../../services/messageService'
+import { supabaseConfigIssue, supabaseConfigState } from '../../config/supabase'
+import { getMessageStorageMode, MessageSubmissionError, submitMessage, type MessageReceipt } from '../../services/messageService'
 
 const MAX_MESSAGE_LENGTH = 2000
+
+function getStorageNotice(): string {
+  if (supabaseConfigState === 'ready') {
+    return 'REMOTE READY · Settings are present; a successful save confirms Supabase delivery.'
+  }
+
+  switch (supabaseConfigIssue) {
+    case 'missing-url-and-key':
+      return 'DEMO MODE · This build is missing VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.'
+    case 'missing-url':
+      return 'DEMO MODE · This build is missing VITE_SUPABASE_URL.'
+    case 'missing-key':
+      return 'DEMO MODE · This build is missing VITE_SUPABASE_ANON_KEY.'
+    case 'invalid-url':
+      return 'DEMO MODE · VITE_SUPABASE_URL is not a valid URL.'
+    case 'https-required':
+      return 'DEMO MODE · VITE_SUPABASE_URL must use HTTPS.'
+    case 'initialization-failed':
+      return 'DEMO MODE · Supabase could not initialize. Check the URL and public key formatting.'
+    default:
+      return 'DEMO MODE · Messages are saved on this device only.'
+  }
+}
+
+function getSubmissionErrorMessage(cause: unknown): string {
+  if (!(cause instanceof MessageSubmissionError)) {
+    return 'SEND FAILED · Your writing is still here. Please try again.'
+  }
+
+  switch (cause.failure) {
+    case 'network':
+      return 'REMOTE SEND FAILED · Could not reach Supabase. Check the connection and Project URL; your draft is preserved.'
+    case 'credentials':
+      return 'REMOTE SEND FAILED · Supabase rejected the project URL/key pair. Check they belong to the same project; your draft is preserved.'
+    case 'permission':
+      return 'REMOTE SEND FAILED · The database denied this insert. Check its INSERT grant and RLS policy; your draft is preserved.'
+    case 'schema':
+      return 'REMOTE SEND FAILED · The expected message table/schema was not found. Check the migration; your draft is preserved.'
+    default:
+      return 'REMOTE SEND FAILED · Supabase returned an error. Your draft is preserved; check the project logs.'
+  }
+}
 
 function LetterEnvelope({ delivered = false }: { delivered?: boolean }) {
   return <svg className={`message-envelope-art${delivered ? ' is-delivered' : ''}`} viewBox="0 0 116 92" aria-hidden="true" shapeRendering="crispEdges">
@@ -45,8 +87,8 @@ export default function MessageToCDApp() {
       const storedMessage = await submitMessage(message)
       setReceipt(storedMessage)
       setShowSuccess(true)
-    } catch {
-      setError('Something went wrong while sending your message. Your writing is still here; please try again.')
+    } catch (cause) {
+      setError(getSubmissionErrorMessage(cause))
     } finally {
       setSending(false)
     }
@@ -84,11 +126,7 @@ export default function MessageToCDApp() {
 
     <div className={`message-storage-notice ${storageMode === 'demo' ? 'is-demo' : 'is-remote'}`} role="status">
       <span className="message-storage-light" aria-hidden="true" />
-      {storageMode === 'demo'
-        ? supabaseConfigState === 'invalid'
-          ? 'DEMO MODE · Supabase settings are incomplete; messages stay on this device.'
-          : 'DEMO MODE · Messages are saved on this device only.'
-        : 'REMOTE MODE · Messages are sent securely to the private inbox.'}
+      {getStorageNotice()}
     </div>
 
     <form className="message-compose-form" onSubmit={handleSubmit}>

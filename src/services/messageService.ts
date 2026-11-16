@@ -3,6 +3,14 @@ import { supabaseClient } from '../config/supabase'
 export type MessageStorageMode = 'demo' | 'supabase'
 export type DemoMessage = { id: string; message: string; createdAt: string; isRead: boolean }
 export type MessageReceipt = { storage: MessageStorageMode; createdAt: string }
+export type MessageSubmissionFailure = 'network' | 'credentials' | 'permission' | 'schema' | 'remote'
+
+export class MessageSubmissionError extends Error {
+  constructor(readonly failure: MessageSubmissionFailure) {
+    super(`Remote message submission failed: ${failure}`)
+    this.name = 'MessageSubmissionError'
+  }
+}
 
 export const DEMO_MESSAGE_STORAGE_KEY = 'satwika.message-to-cd.demo.v1'
 const MAX_MESSAGE_LENGTH = 2000
@@ -19,6 +27,22 @@ function makeId(): string {
   return typeof crypto !== 'undefined' && 'randomUUID' in crypto
     ? crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(36).slice(2)}`
+}
+
+function classifyRemoteFailure(error: unknown): MessageSubmissionFailure {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return 'network'
+  if (error instanceof TypeError) return 'network'
+
+  const response = error as { code?: unknown; status?: unknown; message?: unknown }
+  const code = typeof response?.code === 'string' ? response.code : ''
+  const status = typeof response?.status === 'number' ? response.status : undefined
+  const message = typeof response?.message === 'string' ? response.message.toLowerCase() : ''
+
+  if (/failed to fetch|fetch failed|network error|network request failed|connection refused|timed out|offline/.test(message)) return 'network'
+  if (status === 401 || code === 'PGRST301' || /invalid api key|invalid jwt|jwt expired|unauthorized/.test(message)) return 'credentials'
+  if (status === 403 || code === '42501' || /permission denied|row level security|insufficient privilege/.test(message)) return 'permission'
+  if (status === 404 || code === '42P01' || code === '42703' || /^PGRST20[0-9]$/.test(code)) return 'schema'
+  return 'remote'
 }
 
 export function getMessageStorageMode(): MessageStorageMode {
@@ -44,8 +68,12 @@ export async function submitMessage(message: string): Promise<MessageReceipt> {
   if (supabaseClient) {
     // Supabase insert does not return rows unless .select() is chained; we intentionally
     // omit it because the public role must not have SELECT access.
-    const { error } = await supabaseClient.from('messages').insert({ message: normalized })
-    if (error) throw new Error('The message could not be stored remotely.')
+    try {
+      const { error } = await supabaseClient.from('messages').insert({ message: normalized })
+      if (error) throw error
+    } catch (cause) {
+      throw new MessageSubmissionError(classifyRemoteFailure(cause))
+    }
     return { storage: 'supabase', createdAt }
   }
 

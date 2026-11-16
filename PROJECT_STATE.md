@@ -18,7 +18,7 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 **Stage 5 — Satwiscape Internet Browser: complete.**
 
-**Stage 6 — Message to CD: implementation complete; Supabase project setup is pending.**
+**Stage 6 — Message to CD: implementation complete; Supabase schema and owner allowlist verified; Vercel Production configuration and live delivery remain under investigation.**
 
 **Stage 7 final repair — Junny HQ: birthday story and responsive layouts verified; only one supplied Junny portrait is currently available.**
 
@@ -94,7 +94,15 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 - Confirmed `/` and `/admin/messages` both return the SPA shell in the Vite development server, and that `vercel.json` contains the inbox rewrite.
 - Reviewed the migration and browser services for RLS, insert-only public access, owner authentication, owner-only read/update/delete rules, absence of a frontend service-role key, and preserved drafts on submission error.
 - `npm audit --omit=dev` reported zero production dependency vulnerabilities. The full audit still flags the existing Vite/esbuild development toolchain; the available fix requires a Vite major upgrade.
-- A live Supabase insert, Auth flow, and database-policy test remain pending project setup because no Supabase credentials or project are configured. The browser UI interaction check could not run because the computer-use bridge failed to initialize (`failed to write kernel assets: The system cannot find the path specified`); normal/maximized visual checks remain unverified.
+- The current Supabase project is active and healthy. Direct inspection verified `public.messages` columns (`id`, `message`, `created_at`, `is_read`), RLS enabled, all four expected policies, and grants limited to anonymous message insertion plus authenticated owner operations. `private.message_owners` has one row matching an existing Auth user. The message table is currently empty.
+- The migration was applied through the SQL Editor: the database objects exist, while Supabase's CLI migration history is empty. This does not affect runtime behavior, but it means the dashboard-applied migration is not recorded as a CLI migration.
+- Supabase's recent PostgREST log inspection returned no message-related request events in the inspected window. No actual production Message to CD insert has been confirmed.
+- Investigated the Vercel DEMO fallback. `supabaseClient` is null when the production Vite build has both variables absent, either variable missing, or an invalid/insecure URL; a non-empty but wrong key instead creates a client and fails during remote submission. The local checkout has only a blank `.env.example`, no `.vercel/project.json`, no Vercel CLI, and no local Vite Supabase variables. GitHub's latest main commit is `2ab1fbe` and its Vercel status reports a completed deployment, but that does not prove which deployment is aliased to Production or what values it embedded.
+- Vercel's connected account denied access to team `junny5` pending the owner's one-time approval. Therefore Production environment-variable names/scopes/values, project root and build settings, deployment aliases, and the deployed site's runtime bundle remain unverified. No exact production-side missing variable can yet be claimed.
+- Added safe configuration diagnostics to Message to CD: the banner now identifies missing URL/key, invalid URL/protocol, or client initialization failure without exposing values. A configured client is labeled `REMOTE READY`, and only a successful insert produces the remote success receipt. Remote failures are categorized as network, credentials, database permission, schema, or other Supabase rejection; they preserve the draft and never fall back to local demo storage.
+- Verified the config states with Vite SSR for both variables absent, each variable missing individually, insecure URL, and whitespace-trimmed HTTPS URL plus a non-empty publishable key. Simulated network, credentials, RLS permission, missing-table, and successful insert responses; failed remote cases did not write local demo data. `npm run build` passed. No automated test script or test files are configured in this repository; the browser-control bridge failed to initialize (`failed to write kernel assets: The system cannot find the path specified`).
+- Supabase security advisories report that password-leak protection is disabled (separate hardening item). The private allowlist table's RLS-enabled/no-policy advisory is expected: browser roles are revoked, while the security-definer owner helper performs the lookup.
+- Confirmed the migration's `public.messages` columns (`id`, `message`, `created_at`, `is_read`) match the generated database types and service queries. The migration grants anonymous insert on `message` only; select, update, and delete are limited to authenticated users, with RLS policies requiring the private owner allowlist. `/admin/messages` additionally checks Supabase Auth and `is_message_owner`; database RLS remains the enforcement boundary. No service-role key is present in frontend code.
 - Built the Stage 7 final repair successfully with `npm run build`.
 - Reproduced the stuck wish interaction: the button showed “I made my wish” on every wish line, while the state machine only accepts that action on the last line. The panel now offers Continue until the final wish line and only then offers wish confirmation.
 - Fixed a shared `.birthday-cake` style collision that reduced the room cake to 10 × 10 pixels. The calendar now has its own icon class; the scene cake is positioned and sized within Junny's room, with its base aligned to the tabletop.
@@ -127,12 +135,12 @@ Satwika OS is a personal, pixel-art desktop environment inspired by the warmth a
 
 ## Pending features
 
-- Supabase project creation, migration execution, owner-user allowlisting, Vercel environment configuration, and live remote-storage verification.
+- Vercel team authorization, Production environment/deployment inspection, and a successful public-form-to-owner-inbox production test.
 - Any additional stages requested by the project owner.
 
 ## Known bugs
 
-- No open Junny HQ defects remain from this repair pass. Live Stage 6 Supabase operations remain unverified until a project is configured.
+- No open Junny HQ defects remain from this repair pass. The reported production DEMO status remains unresolved until Vercel team access allows verification of the Production build variables and deployment alias, followed by a live insert/inbox test.
 
 ## Architectural decisions
 
